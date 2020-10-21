@@ -101,8 +101,8 @@ protected:
 class GCreditsPlayfield : public BPlayfield {
 public:
   GCreditsPlayfield() {
-    gResourceManager.LoadBitmap(TITLE_BMP, BKG_SLOT, IMAGE_ENTIRE);
-    mBackground = gResourceManager.GetBitmap(BKG_SLOT);
+//    gResourceManager.LoadBitmap(TITLE_BMP, BKG_SLOT, IMAGE_ENTIRE);
+//    mBackground = gResourceManager.GetBitmap(BKG_SLOT);
     gDisplay.SetPalette(mBackground);
     gDisplay.SetColor(0, 0, 0, 0);
   }
@@ -113,7 +113,7 @@ public:
 
 public:
   void Render() OVERRIDE {
-    gDisplay.renderBitmap->CopyPixels(mBackground);
+//    gDisplay.renderBitmap->CopyPixels(mBackground);
   }
 
 public:

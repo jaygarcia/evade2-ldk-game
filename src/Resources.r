@@ -3,7 +3,7 @@
 #
 PATH resources/
 BITMAP splash.bmp
-BITMAP title.bmp
+//BITMAP title.bmp
 
 #
 ### FONTS
