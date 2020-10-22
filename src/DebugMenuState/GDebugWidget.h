@@ -6,11 +6,11 @@
 
 class GDebugWidget : public GButtonWidget {
 public:
-    GDebugWidget();
-    ~GDebugWidget() OVERRIDE;
+  GDebugWidget();
+  ~GDebugWidget() OVERRIDE;
 public:
-    TInt Render(TInt aX, TInt aY) OVERRIDE;
-    void Select() OVERRIDE;
+  TInt Render(TInt aX, TInt aY) OVERRIDE;
+  void Select() OVERRIDE;
 };
 
 #endif //GENUS_GDEBUGWIDGET_H

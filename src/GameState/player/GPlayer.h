@@ -16,59 +16,16 @@ class GBossProcess;
 #include "GPlayerSprite.h"
 #include "GAnchorSprite.h"
 #include "GResources.h"
-#include "inventory/GInventoryList.h"
 #include "GStatProcess.h"
 #include "GSoundPlayer.h"
 
 const TInt DEFAULT_PLAYER_HITPOINTS = 200;
 const TInt DEFAULT_PLAYER_MANA = 100;
 
-const TFloat SPELLBOOK_MATRIX[4][4] = {
-  // water, fire,   earth,  energy (spell book)
-  { -4,     0.5,    0.5,    0.5 }, // water (enemy)
-  { 2.0,    -4,     1.5,    2.0 }, // fire
-  { 0.5,    2.0,    -4,     1.5 }, // earth
-  { 1.5,    1.5,    2.0,    -4  }, // energy
-};
-
-const TFloat RING_MATRIX[4][4] = {
-  // water, fire,   earth,  energy
-  { -2,     1.0 ,   1.0 ,   1.0  }, // water
-  { 1.25,   -2,     1.25,   1.25 }, // fire
-  { 1.0 ,   1.25,   -2,     1.25 }, // earth
-  { 1.25,   1.25,   1.25,   -2  }, // energy
-};
-
-const TFloat AMULET_MATRIX[4][4] = {
-  // water, fire,   earth,  energy
-  { 0.25,   2.0 ,   2.0 ,   2.0  }, // water
-  { 1.0 ,   0.25,   1.0 ,   1.0  }, // fire
-  { 1.0 ,   1.0 ,   0.25,   1.0  }, // earth
-  { 2.0 ,   1.0 ,   1.0 ,   0.25 }, // energy
-};
-
-struct GEquipped {
-  ELEMENT mAmuletElement, mRingElement, mSpellBookElement;
-  GInventoryItem
-    *mGloves,
-    *mBoots,
-    *mSword;
-
-  void Init() {
-    mAmuletElement = ELEMENT_NONE;
-    mRingElement = ELEMENT_NONE;
-    mSpellBookElement = ELEMENT_NONE;
-
-    mGloves = ENull;
-    mBoots = ENull;
-    mSword = ENull;
-  }
-};
 
 struct GPlayer {
   static void Init() {
     printf("Init GPlayer\n");
-    mInventoryList.FullReset();
     mLevel = 1;
     mNextLevel = 100;
     mExperience = 0;
@@ -80,8 +37,6 @@ struct GPlayer {
     mManaPotion = mMaxMana;
 
     //
-    mEquipped.Init();
-
     mGameOver = EFalse;
     mActiveBoss = ENull;
     mTargeted = mClosestEnemy = ENull;
@@ -132,11 +87,9 @@ struct GPlayer {
   static TBool mInvulnerable;
   static TInt32 mAttackStrength;
   static TInt32 mManaPotion, mMaxMana;
-  static GInventoryList mInventoryList;
   static GPlayerProcess *mProcess;
   static GPlayerSprite *mSprite;
   static GGameState *mGameState;
-  static GEquipped mEquipped;
   static TBool mGameOver;
   static GBossProcess *mActiveBoss;
   static GAnchorSprite *mClosestEnemy, *mTargeted;

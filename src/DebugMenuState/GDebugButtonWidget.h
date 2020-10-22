@@ -8,13 +8,13 @@ class GDebugMenuContainer;
 
 class GDebugButtonWidget : public GButtonWidget {
 public:
-    GDebugButtonWidget(const char *mText, TInt aState, GDebugMenuContainer *aContainer);
-    ~GDebugButtonWidget() OVERRIDE;
-    TInt Render(TInt aX, TInt aY) OVERRIDE;
-    void Select() OVERRIDE;
+  GDebugButtonWidget(const char *mText, TInt aState, GDebugMenuContainer *aContainer);
+  ~GDebugButtonWidget() OVERRIDE;
+  TInt Render(TInt aX, TInt aY) OVERRIDE;
+  void Select() OVERRIDE;
 
 public:
-    GDebugMenuContainer *mContainer;
+  GDebugMenuContainer *mContainer;
 };
 
 #endif //GENUS_GDEBUGBUTTONWIDGET_H

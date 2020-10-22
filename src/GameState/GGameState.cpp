@@ -5,7 +5,6 @@
 #include "GameState/player/GGameOver.h"
 #include "GameState/player/GPlayerProcess.h"
 #include "GHud.h"
-#include "Items.h"
 
 #include "GPlayer.h"
 
@@ -46,7 +45,6 @@ void GGameState::Init() {
 
   // Clear BObject programs
   GGamePlayfield::ResetCache();
-  GPlayer::mInventoryList.FullReset();
 
 
   gViewPort->SetRect(TRect(0, 16, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1));

@@ -5,11 +5,11 @@
 
 class GLevelUpPlayer : public GButtonWidget {
 public:
-    GLevelUpPlayer();
-    ~GLevelUpPlayer() = default;
+  GLevelUpPlayer();
+  ~GLevelUpPlayer() = default;
 
-    TInt Render(TInt aX, TInt aY) OVERRIDE;
-    void Select() OVERRIDE;
+  TInt Render(TInt aX, TInt aY) OVERRIDE;
+  void Select() OVERRIDE;
 };
 
 

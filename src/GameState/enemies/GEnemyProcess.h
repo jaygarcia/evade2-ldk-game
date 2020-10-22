@@ -6,6 +6,14 @@
 #include "GPlayer.h"
 #include "GEnemySprite.h"
 
+enum {
+  ENEMY_ASSAULT,
+  ENEMY_BOMBER,
+  ENEMY_SCOUT
+};
+
+
+
 class GEnemyProcess : public GProcess {
 public:
   EXPLICIT GEnemyProcess(GGameState *aGameState, TFloat aX, TFloat aY, TUint16 aSlot, TUint16 aAttribute);
@@ -27,13 +35,10 @@ protected:
 
 public:
   GEnemySprite *mSprite;
-  TBool mInvulnerable;   // cannot be attacked
   TInt16 mHitPoints, mMaxHitPoints;
-  TInt32 mExperienceYield;
 
 protected:
   GGameState *mGameState;
-  GGamePlayfield *mPlayfield;
   TFloat mStartX, mStartY;
   DIRECTION mDirection;
   TUint16 mState, mStep; // state variables

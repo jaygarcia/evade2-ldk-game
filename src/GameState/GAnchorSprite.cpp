@@ -1,5 +1,4 @@
 #include <GameState/player/GPlayer.h>
-#include <GameState/inventory/Items.h>
 #include <GameState/status/GStatProcess.h>
 #include "Game.h"
 #include "GAnchorSprite.h"

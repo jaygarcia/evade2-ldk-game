@@ -1,14 +1,8 @@
 #include "GDebugMenuContainer.h"
-#include "GLevelWidget.h"
 #include "GDebugWidget.h"
-#include "GHealthWidget.h"
-#include "GGiveAllPowerUpsWidget.h"
 #include "GLevelUpPlayer.h"
-#include "GManaWidget.h"
-#include "GItemWidget.h"
 #include "GDebugButtonWidget.h"
 #include "GGameState.h"
-#include "Items.h"
 
 static const TUint8 WIDGETS_PER_SCREEN = 12;
 
@@ -37,32 +31,7 @@ void GDebugMenuContainer::SetState(TInt aState) {
   if (mState == DEBUG_MAIN) {
     mTitle = (char*)"DEBUG MODE";
     AddWidget((BWidget &) *new GDebugWidget());
-    AddWidget((BWidget &) *new GGiveAllPowerUpsWidget());
-    AddWidget((BWidget &) *new GHealthWidget());
-    AddWidget((BWidget &) *new GManaWidget());
     AddWidget((BWidget &) *new GLevelUpPlayer());
-    AddWidget((BWidget &) *new GDebugButtonWidget("Dungeon Levels", DEBUG_LEVEL, this));
-    AddWidget((BWidget &) *new GDebugButtonWidget("Inventory", DEBUG_INV, this));
-  } else if (mState == DEBUG_LEVEL) {
-    mTitle = (char*)"DEBUG LEVELS";
-    for (TUint8 i = 0; i < NUM_DUNGEONS; i++) {
-      const TDungeonInfo *d = &gDungeonDefs[i];
-      const TUint8 levels = sizeof(d->mInfo.map) / sizeof(TInt16);
-      for (TInt16 j = 1; j < levels - 1; j++) {
-        if (d->mInfo.map[j] == -1) break;
-        AddWidget((BWidget &) *new GLevelWidget(i, j));
-      }
-    }
-    AddWidget((BWidget &) *new GDebugButtonWidget("BACK", DEBUG_MAIN, this));
-  } else if (mState == DEBUG_INV) {
-    mTitle = (char*)"DEBUG INVENTORY";
-    const TUint8 itemCount = sizeof(items) / sizeof(TInt);
-    for (TUint8 i = 1; i < itemCount; i++) {
-      AddWidget((BWidget &) *new GItemWidget(i, mEngine));
-    }
-    AddWidget((BWidget &) *new GDebugButtonWidget("BACK", DEBUG_MAIN, this));
-  } else {
-    Panic("Invalid debug state");
   }
 
   mCurrentWidget = mList.First();

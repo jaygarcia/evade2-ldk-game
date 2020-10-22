@@ -4,7 +4,6 @@
 #include "BResourceManager.h"
 #include "GPlayer.h"
 #include "GHud.h"
-#include "Items.h"
 #include "Game.h"
 #include "GBossProcess.h"
 
@@ -34,98 +33,70 @@ static void render_meter(BViewPort *vp, BBitmap *screen, TUint8 color, TInt x, T
   const TInt innerWidth = METER_WIDTH - 2;
 
   TInt w = (TInt)(pct *  innerWidth);
-
-  screen->DrawRect(vp, x, y, x + METER_WIDTH - 1, y + METER_HEIGHT - 1, COLOR_METER_OUTLINE);
-  screen->DrawFastHLine(vp, x + 1, y + 1, w, color);
-  screen->FillRect(vp, x + 1, y + 2, x + w, y + METER_HEIGHT - 2, TUint8(color + 1));
-
-  // erase the corners
-  screen->DrawFastHLine(vp, x, y, 2, COLOR_HUD_BG);
-  screen->DrawFastVLine(vp, x, y, 2, COLOR_HUD_BG);
-
-  screen->DrawFastHLine(vp, x + METER_WIDTH - 2, y, 2, COLOR_HUD_BG);
-  screen->DrawFastVLine(vp, x + METER_WIDTH - 1, y, 2, COLOR_HUD_BG);
-
-  screen->DrawFastHLine(vp, x, y + METER_HEIGHT - 1, 2, COLOR_HUD_BG);
-  screen->DrawFastVLine(vp, x, y + METER_HEIGHT - 2, 2, COLOR_HUD_BG);
-
-  screen->DrawFastHLine(vp, x + METER_WIDTH - 2, y + METER_HEIGHT - 1, 2, COLOR_HUD_BG);
-  screen->DrawFastVLine(vp, x + METER_WIDTH - 1, y + METER_HEIGHT - 2, 2, COLOR_HUD_BG);
-
-  // draw the 4 pixels to round off the oval
-  screen->WritePixel(x + 1, y + 1, COLOR_METER_OUTLINE);
-  screen->WritePixel(x + METER_WIDTH - 2, y + 1, COLOR_METER_OUTLINE);
-
-  screen->WritePixel(x + 1, y + METER_HEIGHT - 2, COLOR_METER_OUTLINE);
-  screen->WritePixel(x + METER_WIDTH - 2, y + METER_HEIGHT - 2, COLOR_METER_OUTLINE);
+//
+//  screen->DrawRect(vp, x, y, x + METER_WIDTH - 1, y + METER_HEIGHT - 1, COLOR_METER_OUTLINE);
+//  screen->DrawFastHLine(vp, x + 1, y + 1, w, color);
+//  screen->FillRect(vp, x + 1, y + 2, x + w, y + METER_HEIGHT - 2, TUint8(color + 1));
+//
+//  // erase the corners
+//  screen->DrawFastHLine(vp, x, y, 2, COLOR_HUD_BG);
+//  screen->DrawFastVLine(vp, x, y, 2, COLOR_HUD_BG);
+//
+//  screen->DrawFastHLine(vp, x + METER_WIDTH - 2, y, 2, COLOR_HUD_BG);
+//  screen->DrawFastVLine(vp, x + METER_WIDTH - 1, y, 2, COLOR_HUD_BG);
+//
+//  screen->DrawFastHLine(vp, x, y + METER_HEIGHT - 1, 2, COLOR_HUD_BG);
+//  screen->DrawFastVLine(vp, x, y + METER_HEIGHT - 2, 2, COLOR_HUD_BG);
+//
+//  screen->DrawFastHLine(vp, x + METER_WIDTH - 2, y + METER_HEIGHT - 1, 2, COLOR_HUD_BG);
+//  screen->DrawFastVLine(vp, x + METER_WIDTH - 1, y + METER_HEIGHT - 2, 2, COLOR_HUD_BG);
+//
+//  // draw the 4 pixels to round off the oval
+//  screen->WritePixel(x + 1, y + 1, COLOR_METER_OUTLINE);
+//  screen->WritePixel(x + METER_WIDTH - 2, y + 1, COLOR_METER_OUTLINE);
+//
+//  screen->WritePixel(x + 1, y + METER_HEIGHT - 2, COLOR_METER_OUTLINE);
+//  screen->WritePixel(x + METER_WIDTH - 2, y + METER_HEIGHT - 2, COLOR_METER_OUTLINE);
 }
 
 void GHud::SetColors() {
 
 //  printf("GHud::SetColors()\n");
-  gDisplay.renderBitmap->SetColor(COLOR_HUD_BG, 0, 0, 0);
-  gDisplay.renderBitmap->SetColor(COLOR_METER_OUTLINE, 64, 64, 64);     // outline color for meter
-  gDisplay.renderBitmap->SetColor(COLOR_HEALTH, 0xf9, 0xa4, 0xa1);      // light
-  gDisplay.renderBitmap->SetColor(COLOR_HEALTH2, 0xff, 0x59, 0x43);     // dark
-  gDisplay.renderBitmap->SetColor(COLOR_MAGIC, 0x63, 0xab, 0xf1);       // light
-  gDisplay.renderBitmap->SetColor(COLOR_MAGIC2, 0x43, 0x7b, 0xf0);      // dark
-  gDisplay.renderBitmap->SetColor(COLOR_EXPERIENCE, 0x6c, 0xd8, 0x20);  // light
-  gDisplay.renderBitmap->SetColor(COLOR_EXPERIENCE2, 0x2d, 0xa1, 0x2f); // dark
+//  gDisplay.renderBitmap->SetColor(COLOR_HUD_BG, 0, 0, 0);
+//  gDisplay.renderBitmap->SetColor(COLOR_METER_OUTLINE, 64, 64, 64);     // outline color for meter
+//  gDisplay.renderBitmap->SetColor(COLOR_HEALTH, 0xf9, 0xa4, 0xa1);      // light
+//  gDisplay.renderBitmap->SetColor(COLOR_HEALTH2, 0xff, 0x59, 0x43);     // dark
+//  gDisplay.renderBitmap->SetColor(COLOR_MAGIC, 0x63, 0xab, 0xf1);       // light
+//  gDisplay.renderBitmap->SetColor(COLOR_MAGIC2, 0x43, 0x7b, 0xf0);      // dark
+//  gDisplay.renderBitmap->SetColor(COLOR_EXPERIENCE, 0x6c, 0xd8, 0x20);  // light
+//  gDisplay.renderBitmap->SetColor(COLOR_EXPERIENCE2, 0x2d, 0xa1, 0x2f); // dark
 }
 
 void GHud::Render() {
-  BBitmap *b = gResourceManager.GetBitmap(ENVIRONMENT_SLOT),
-          *screen = gDisplay.renderBitmap;
-
-  BViewPort vp;
-  TRect rect(0, 0, SCREEN_WIDTH - 1, 15);
-  vp.SetRect(rect);
-  gDisplay.renderBitmap->FillRect(&vp, vp.mRect, COLOR_HUD_BG);
-
-
-  screen->DrawBitmapTransparent(&vp, b, heart, 8, 0);
-  render_meter(&vp, screen, COLOR_HEALTH, 26, 2, GPlayer::mHitPoints, GPlayer::mMaxHitPoints);
-
-  screen->DrawBitmapTransparent(&vp, b, magic, 91, 0);
-  render_meter(&vp, screen, COLOR_MAGIC, 105, 2, GPlayer::mManaPotion, GPlayer::mMaxMana);
-
-  screen->DrawBitmapTransparent(&vp, b, sword, 168, 0);
-  render_meter(&vp, screen, COLOR_EXPERIENCE, 169 + 20, 2, GPlayer::mExperience, GPlayer::mNextLevel);
-
-  switch (GPlayer::mEquipped.mSpellBookElement) {
-    case ELEMENT_WATER:
-      screen->DrawBitmapTransparent(&vp, b, water, 249, 0);
-      break;
-    case ELEMENT_FIRE:
-      screen->DrawBitmapTransparent(&vp, b, energy, 249, 0);
-      break;
-    case ELEMENT_ENERGY:
-      screen->DrawBitmapTransparent(&vp, b, fire, 249, 0);
-      break;
-    case ELEMENT_EARTH:
-      screen->DrawBitmapTransparent(&vp, b, earth, 249, 0);
-      break;
-    default:
-      break;
-  }
-  if (GPlayer::mInventoryList.FindItem(ITEM_SILVER_KEY)) {
-    screen->DrawBitmapTransparent(&vp, b, silver_key, 278, 0);
-  }
-  if (GPlayer::mInventoryList.FindItem(ITEM_GOLD_KEY)) {
-    screen->DrawBitmapTransparent(&vp, b, gold_key, 294, 0);
-  }
-
-  GBossProcess *boss = GPlayer::mActiveBoss;
-  if (boss) {
-    TInt h = gViewPort->mRect.Height();
-    gDisplay.renderBitmap->DrawStringShadow(gViewPort, boss->mSprite->Name(), gFont8x8, 21, h - 24, COLOR_TEXT, COLOR_TEXT_SHADOW,
-                                            COLOR_TEXT_TRANSPARENT);
-    gDisplay.renderBitmap->DrawFastHLine(gViewPort, 21, h - 11, STAT_WIDTH + 1, COLOR_METER_OUTLINE);
-    gDisplay.renderBitmap->DrawFastVLine(gViewPort, 22 + STAT_WIDTH, h - 15, 5, COLOR_METER_OUTLINE);
-    gDisplay.renderBitmap->FillRect(gViewPort, 20, h - 16, 21 + STAT_WIDTH, h - 12, COLOR_TEXT);
-    if (boss->mHitPoints > 0) {
-      gDisplay.renderBitmap->FillRect(gViewPort, 20, h - 16, 21 + boss->mHitPoints * STAT_WIDTH / boss->mMaxHitPoints,
-                                      h - 12, COLOR_HEALTH2);
-    }
-  }
+//  BBitmap *b = gResourceManager.GetBitmap(ENVIRONMENT_SLOT),
+//          *screen = gDisplay.renderBitmap;
+//
+//  BViewPort vp;
+//  TRect rect(0, 0, SCREEN_WIDTH - 1, 15);
+//  vp.SetRect(rect);
+//  gDisplay.renderBitmap->FillRect(&vp, vp.mRect, COLOR_HUD_BG);
+//
+//
+//  screen->DrawBitmapTransparent(&vp, b, heart, 8, 0);
+//  render_meter(&vp, screen, COLOR_HEALTH, 26, 2, GPlayer::mHitPoints, GPlayer::mMaxHitPoints);
+//
+//  screen->DrawBitmapTransparent(&vp, b, magic, 91, 0);
+//  render_meter(&vp, screen, COLOR_MAGIC, 105, 2, GPlayer::mManaPotion, GPlayer::mMaxMana);
+//
+//  screen->DrawBitmapTransparent(&vp, b, sword, 168, 0);
+//  render_meter(&vp, screen, COLOR_EXPERIENCE, 169 + 20, 2, GPlayer::mExperience, GPlayer::mNextLevel);
+//
+//
+//  GBossProcess *boss = GPlayer::mActiveBoss;
+//  if (boss) {
+//    TInt h = gViewPort->mRect.Height();
+//    gDisplay.renderBitmap->DrawFastHLine(gViewPort, 21, h - 11, STAT_WIDTH + 1, COLOR_METER_OUTLINE);
+//    gDisplay.renderBitmap->DrawFastVLine(gViewPort, 22 + STAT_WIDTH, h - 15, 5, COLOR_METER_OUTLINE);
+//    gDisplay.renderBitmap->FillRect(gViewPort, 20, h - 16, 21 + STAT_WIDTH, h - 12, COLOR_TEXT);
+//  }
 }

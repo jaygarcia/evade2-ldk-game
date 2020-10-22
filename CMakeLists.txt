@@ -24,10 +24,6 @@ ADD_COMPILE_DEFINITIONS(__MODUS_TARGET_DESKTOP_DISPLAY__=true)
 INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/creative-engine/CreativeEngine.cmake)
 
 
-
-
-### LDK END   ####
-
 SET(MODITE_INCLUDE_DIRS
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/src/resources
@@ -40,8 +36,8 @@ SET(MODITE_INCLUDE_DIRS
     ${CMAKE_SOURCE_DIR}/src/GameState/enemies/final-boss
     ${CMAKE_SOURCE_DIR}/src/GameState/enemies/grunts
     ${CMAKE_SOURCE_DIR}/src/GameState/enemies/mid-bosses
-    ${CMAKE_SOURCE_DIR}/src/GameState/enemies/wizard
     ${CMAKE_SOURCE_DIR}/src/GameState/status
+    ${CMAKE_SOURCE_DIR}/src/AttractState
     ${CMAKE_SOURCE_DIR}/src/GameMenuState
     ${CMAKE_SOURCE_DIR}/src/DebugMenuState
     ${CMAKE_SOURCE_DIR}/src/GameOverState

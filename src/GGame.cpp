@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "GGame.h"
 #include "GPlayer.h"
-#include "inventory/GInventory.h"
 
 static TUint32 start;
 
@@ -136,7 +135,6 @@ void GGame::ToggleInventory() {
     }
   }
   else {
-    mInventory = new GInventory(&gFullViewPort);
     gGameEngine->Pause();
   }
   gControls.dKeys = 0;
@@ -225,10 +223,6 @@ void GGame::Run() {
           delete gGameEngine;
           gGameEngine = new GMainMenuState((GGameState *)gGameEngine);
           break;
-        case GAME_STATE_LOAD_GAME:
-          delete gGameEngine;
-          gGameEngine = new GLoadGameState();
-          break;
         case GAME_STATE_MAIN_OPTIONS:
           delete gGameEngine;
           gGameEngine = new GMainOptionsState();
@@ -236,6 +230,10 @@ void GGame::Run() {
         case GAME_STATE_RESET_OPTIONS:
           delete gGameEngine;
           gGameEngine = new GResetOptionsState();
+          break;
+        case GAME_STATE_ATTRACT_MODE:
+          delete gGameEngine;
+          gGameEngine = new GAttractModeState();
           break;
         case GAME_STATE_RESET_GAME:
         case GAME_STATE_GAME:
@@ -247,10 +245,7 @@ void GGame::Run() {
           delete gGameEngine;
           gGameEngine = new GGameState((char *)mLocalData);
           break;
-        case GAME_STATE_CREDITS:
-          delete gGameEngine;
-          gGameEngine = new GCreditsState();
-          break;
+
         case GAME_STATE_VICTORY:
           delete gGameEngine;
           gGameEngine = new GVictoryState((GGameState *)gGameEngine);
@@ -264,6 +259,8 @@ void GGame::Run() {
       gControls.dKeys = 0;
       mState = mNextState;
     }
+
+
 
     if (mInventory) {
       mInventory->GameLoop();

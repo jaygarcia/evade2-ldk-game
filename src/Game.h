@@ -24,6 +24,14 @@
 #define STR_LEFT_ARROW "\xf"
 #define STR_RIGHT_ARROW "\xe"
 
+#ifndef PI
+#define PI 3.1415926
+#endif
+
+#ifndef RADIANS
+#define RADIANS(degrees) (FLOAT(degrees) * PI / 180)
+#endif
+
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
@@ -43,11 +51,10 @@ const TUint16 FACTOR = FRAMES_PER_SECOND / 30;
 #include "GSplashState.h"
 #include "GGameState.h"
 #include "GMainMenuState.h"
-#include "LoadGameState/GLoadGameState.h"
 #include "GMainOptionsState.h"
 #include "GResetOptionsState.h"
-#include "GCreditsState.h"
 #include "GGameMenuState.h"
+#include "GAttractModeState.h"
 #include "GVictoryState.h"
 #include "DebugMenuState/GDebugMenuState.h"
 //#include "GInventory.h"

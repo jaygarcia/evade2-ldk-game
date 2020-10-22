@@ -21,6 +21,12 @@ TBool GMainMenuProcess::RunBefore() {
 TBool GMainMenuProcess::RunAfter() {
   mContainer->Render(120, 130);
   mContainer->Run();
+
+  if (mTimer > 10) {
+    gGame->SetState(GAME_STATE_ATTRACT_MODE);
+    return EFalse;
+  }
+
   if (gControls.WasPressed(BUTTON_START)) {
     gGame->SetState(GAME_STATE_GAME);
     return EFalse;

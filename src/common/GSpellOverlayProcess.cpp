@@ -29,18 +29,6 @@ GSpellOverlayProcess::GSpellOverlayProcess(GGameState *aGameState, GProcess *aPr
   mSprite->vx = aVX;
   mSprite->vy = aVY;
 
-  switch (GPlayer::mEquipped.mSpellBookElement) {
-    case ELEMENT_WATER:
-      mSprite->y = aY + 16;
-      break;
-    case ELEMENT_FIRE:
-    case ELEMENT_EARTH:
-    case ELEMENT_ENERGY:
-      mSprite->y = aY + 1;
-      break;
-    default:
-      Panic("Invalid spell");
-  }
 
   mSpawnDelay = aSpawnDelay;
   mGameState = aGameState;
