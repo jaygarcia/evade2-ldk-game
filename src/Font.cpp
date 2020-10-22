@@ -148,9 +148,7 @@ static const TInt8 *charset[] = {
 
 TInt16 Font::scale = 0x100;
 
-#ifdef ENABLE_ROTATING_TEXT
-TInt8 Font::print_string_rotatedx(TUint8 color, TInt16 x, TInt16 y, TFloat theta,
-                                 const char *p) {
+TInt8 Font::print_string_rotatedx(TUint8 color, TInt16 x, TInt16 y, TFloat theta, const char *p) {
   theta = TFloat(theta) * 3.1415926 / 180;
   TFloat cost = cos(theta), sint = sin(theta);
 
@@ -211,7 +209,6 @@ TInt8 Font::print_string_rotatedx(TInt16 x, TInt16 y, TFloat theta, const char *
   }
   return x - xo;
 }
-#endif
 
 TInt8 Font::write(TUint8 color, TInt16 x, TInt16 y, char c) {
   const TInt8 *glyph;

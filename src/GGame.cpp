@@ -57,7 +57,8 @@ GGame::GGame() {
   mGameMenu = ENull;
   mDebugMenu = ENull;
   mInventory = ENull;
-  SetState(GAME_STATE_SPLASH);
+//  SetState(GAME_STATE_SPLASH); <-- DEFAULT
+  SetState(GAME_STATE_MAIN_MENU); // <--- For debugging
   start = Milliseconds();
   mShmoo.Set(0, 0, 0);
 

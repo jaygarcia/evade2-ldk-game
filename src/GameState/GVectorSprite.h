@@ -14,8 +14,9 @@ struct vec_segment_u8 {
 class GVectorSprite : public BSprite {
 
 public:
-  GVectorSprite(TInt aPri, TUint16 bm, TUint16 img = 0, TUint32 aType = STYPE_DEFAULT) : BSprite(aPri, bm, img, aType) {
+  EXPLICIT GVectorSprite(TInt aPri = 0, TUint16 aBM = 0, TUint16 aIMG = 0, TUint32 aType = STYPE_DEFAULT) : BSprite(aPri, aBM, aIMG, aType) {
     mColor = COLOR_WHITE;
+    mPad = 0;
     mX = mY = mZ = 0;
     mVX = mVY = mVZ = 0;
     mFlags = mState = mTheta = 0;

@@ -78,7 +78,7 @@ TBool GVectorSprite::Render(BViewPort *aViewPort) {
           dy = Camera::mY - mY,
           angle = atan2(dy, dx);
 
-
+          printf("TODO: Fill Circle for enemy radar\n");
 //        Gfx::FillCircle(
 //            (int16_t)(SCREEN_WIDTH / 2 + cos(angle) * 75),
 //            (int16_t)(SCREEN_HEIGHT / 2 + sin(angle) * 75),

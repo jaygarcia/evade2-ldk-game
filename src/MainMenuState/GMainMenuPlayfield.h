@@ -3,6 +3,8 @@
 
 #include "Game.h"
 #include "GPlayerSprite.h"
+#include "GVectorTitle.h"
+
 class GMainMenuPlayfield : public BPlayfield {
 public:
   GMainMenuPlayfield(GGameState *aGameState);
@@ -13,7 +15,6 @@ public:
 
   void Animate() OVERRIDE;
   void Render() OVERRIDE;
-  void DrawScrolledBackground(BBitmap *aBitmap, TFloat aOffsetX, TUint aVerticalOffset, TBool aDrawTransparent);
 public:
 
 //  BFont *mFont8;
@@ -23,22 +24,7 @@ public:
 protected:
 
   GGameState *mGameState;
-
-  BBitmap *mBgSky;
-  BBitmap *mBgMountains;
-  BBitmap *mBgMoon;
-  BBitmap *mBgNearTrees;
-  BBitmap *mBgWalkingPath;
-  BBitmap *mBgLogo;
-  GPlayerSprite *mPlayer;
-
-  TFloat mSkyOffset;
-  TFloat mMountainsOffset;
-  TFloat mMoonOffset;
-  TFloat mNearTreesOffset;
-  TFloat mPathOffset;
-  TRGB mSavedPalette[256];
-  TInt8 mFadeState;
+  GVectorTitle *mTitle;
 };
 
 #endif //GENUS_GMAINMENUPLAYFIELD_H

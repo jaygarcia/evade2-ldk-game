@@ -13,7 +13,7 @@ static TUint32 actualTime = 0;
 static TInt32 speedMills;
 
 static const TInt16 STAR_SPEED_MIN = 5; // Minimum movement in pixels per update. (value is inclusive)
-static const TInt16 STAR_SPEED_MAX = 30; // Maximum movement in pixels per update. (value is inclusive)
+static const TInt16 STAR_SPEED_MAX = 20; // Maximum movement in pixels per update. (value is inclusive)
 
 static const TUint16 RANDOM_Z_MIN = 10;
 static const TUint16 RANDOM_Z_MAX = 600;
@@ -64,38 +64,39 @@ public:
 
   void Render() {
 
-//    for (TInt i = 0; i < NUM_STARS; i++) {
-//      gDisplay.renderBitmap->DrawFastHLine(ENull, mStarX[i], mStarY[i], mStarWidth[i], COLOR_EXPERIENCE);
-//    }
 
     float travelX = 0,
         travelY = 0,
         travelZ = 0;
 
     // Todo: this needs to be in Player.cpp or GGame.cpp
-    TBool jsRight = gControls.WasPressed(JOYRIGHT),
-        jsLeft  = gControls.WasPressed(JOYLEFT),
-        jsUp    = gControls.WasPressed(JOYUP),
-        jsDown  = gControls.WasPressed(JOYDOWN);
-//
+    TBool jsRight = gControls.IsPressed(JOYRIGHT),
+        jsLeft  = gControls.IsPressed(JOYLEFT),
+        jsUp    = gControls.IsPressed(JOYUP),
+        jsDown  = gControls.IsPressed(JOYDOWN),
+        jsRButton = gControls.IsPressed(BUTTONR),
+        jsLButton = gControls.IsPressed(BUTTONL);
+
+
+    //Todo: ROTATE via L or R Buttons in Z dimension
 //    if (gGame.GetState == GAME_STATE_GAME) {
 //      // rotate
-//      if (jsUp) {
-//        travelY = .02;
-//      }
-//
-//      if (jsDown) {
-//        travelY = -.02;
-//      }
-//
-//      if (jsLeft) {
-//        travelZ = -.02;
-//      }
-//
-//      if (jsRight) {
-//        travelZ = .02;
-//      }
-//
+      if (jsUp) {
+        travelY = .02;
+      }
+
+      if (jsDown) {
+        travelY = -.02;
+      }
+
+      if (jsLeft) {
+        travelZ = -.02;
+      }
+
+      if (jsRight) {
+        travelZ = .02;
+      }
+
 //    }
 
 
