@@ -9,7 +9,7 @@ class BulletSprite;
 
 class GPlayerBulletProcess : public GProcess {
 public:
-  GPlayerBulletProcess(GGameState *aGameState, DIRECTION aDirection, TFloat aMultiplier);
+  GPlayerBulletProcess(GGameState *aGameState, TFloat aMultiplier);
   ~GPlayerBulletProcess() OVERRIDE;
 
 public:

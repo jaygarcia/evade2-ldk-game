@@ -1229,7 +1229,7 @@ TBool GGameState::LoadState(const char *aGameName) {
 
     if (attr != -1) {
 
-      GProcess *p = GProcess::Spawn(this, attr, 0, 0, 0, 0, DIRECTION_DOWN);
+      GProcess *p = GProcess::Spawn(this, attr, 0, 0, 0, 0);
       if (!p) {
         Panic("GGameState::LoadState Did not spawn process for attribute %i\n", attr);
       }

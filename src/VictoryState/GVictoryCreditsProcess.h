@@ -76,6 +76,7 @@ public:
     TInt y;
     if (mState != STATE_PRE_FADEIN) {
       switch (mText) {
+        case TEXT_PREROLL:
         case TEXT_EMPTY:
           y = 0;
           break;

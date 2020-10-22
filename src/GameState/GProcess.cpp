@@ -18,7 +18,7 @@ void GProcess::ReadFromStream(BMemoryStream &aStream) {
 //  mSprite->ReadFromStream(aStream);
 }
 
-GProcess *GProcess::Spawn(GGameState *aGameState, TInt16 mAttribute, TInt aIp, TFloat aX, TFloat aY, TUint16 aParams, DIRECTION aDirection, const char *aName) {
+GProcess *GProcess::Spawn(GGameState *aGameState, TInt16 mAttribute, TInt aIp, TFloat aX, TFloat aY, TUint16 aParams) {
   TInt ip = aIp;
   TFloat xx = aX,
          yy = aY;

@@ -1,11 +1,17 @@
 #ifndef MODITE_GAME_H
 #define MODITE_GAME_H
 
+#define pgm_read_byte(addr) *addr
+
+
 #define FRAME_RATE_INFO 0
 #undef FRAME_RATE_INFO
 
 #define ENABLE_AUDIO
 //#undef ENABLE_AUDIO
+
+#define ENABLE_ROTATING_TEXT
+//#undef ENABLE_ROTATING_TEXT
 
 #define ENABLE_OPTIONS
 // #undef ENABLE_OPTIONS
@@ -49,10 +55,6 @@ const TUint16 FACTOR = FRAMES_PER_SECOND / 30;
 extern BViewPort   *gViewPort;
 extern TOptions    *gOptions;
 
-#ifdef __XTENSA__
-static const TInt MAX_BRIGHTNESS = 0x1fff;
-static const TInt MIN_BRIGHTNESS = 0x50;
-#endif
 
 /**
  * Control bits definitions

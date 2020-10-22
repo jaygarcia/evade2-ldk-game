@@ -3,7 +3,7 @@
 
 #include <BMemoryStream.h>
 #include <BProcess.h>
-#include "GAnchorSprite.h"
+#include "GVectorSprite.h"
 #include "GGamePlayfield.h"
 
 class GProcess : public BProcess {
@@ -16,15 +16,15 @@ public:
 
 public:
   // factory method
-  static GProcess *Spawn(GGameState *aGameState, TInt16 mAttribute, TInt aIp, TFloat aX, TFloat aY, TUint16 aParams, DIRECTION aDirection = DIRECTION_DOWN, const char *aName = "UNNAMED");
+  static GProcess *Spawn(GGameState *aGameState, TInt16 mAttribute, TInt aIp, TFloat aX, TFloat aY, TUint16 aParams);
 
 public:
   TBool mSaveToStream; // wil save to stream (save game) if true
-  GAnchorSprite *mSprite, *mSprite2;
   TInt16 mAttribute; // type of thing (e.g. ATTR_BAT)
+  GVectorSprite *mSprite, *mSprite2;
+  GVectorSprite *GetSprite() { return mSprite; }
 
-public:
-  GAnchorSprite *GetSprite() { return mSprite; }
+
 
 public:
   virtual void WriteToStream(BMemoryStream &aStream);
