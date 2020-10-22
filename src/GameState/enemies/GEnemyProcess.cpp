@@ -1,16 +1,20 @@
 #include "GEnemyProcess.h"
 
+
 const TUint8 BLINK_TIME = 4 * FACTOR;
 
 GEnemyProcess::GEnemyProcess(GGameState *aGameState, TFloat aX, TFloat aY, TUint16 aSlot, TUint16 aAttribute)
     : GProcess(aAttribute), mGameState(aGameState) {
-  mSprite = new GEnemySprite(mGameState, ENEMY_PRIORITY, aSlot, 0, STYPE_ENEMY);
-  mSprite->Name("ENEMY");
-  mGameState->AddSprite(mSprite);
+
+
+  mSprite = new GEnemySprite();
+
+
+//  mSprite->Name("ENEMY");
+//  mGameState->AddSprite(mSprite);
 
   mSprite->x = mStartX = aX;
   mSprite->y = mStartY = aY;
-  mDirection = mSprite->mDirection = DIRECTION_DOWN;
   mBlinkTimer = 0;
   mStep = 0;
   mState = 0;
@@ -19,12 +23,6 @@ GEnemyProcess::GEnemyProcess(GGameState *aGameState, TFloat aX, TFloat aY, TUint
 }
 
 GEnemyProcess::~GEnemyProcess() {
-  if (GPlayer::mClosestEnemy == mSprite) {
-    GPlayer::mClosestEnemy = ENull;
-  }
-  if (GPlayer::mTargeted == mSprite) {
-    GPlayer::mTargeted = ENull;
-  }
 
   if (mSprite) {
     mSprite->Remove();
@@ -34,17 +32,17 @@ GEnemyProcess::~GEnemyProcess() {
 }
 
 void GEnemyProcess::SetStatMultipliers(TFloat aModHitPoints, TFloat aModStrength, TFloat aModExperience) {
-  mHitPoints = mMaxHitPoints = round(aModHitPoints * BASE_HIT_POINTS);
-  mSprite->mAttackStrength = round(aModStrength * BASE_STRENGTH);
+//  mHitPoints = mMaxHitPoints = round(aModHitPoints * BASE_HIT_POINTS);
+//  mSprite->mAttackStrength = round(aModStrength * BASE_STRENGTH);
 }
 
 TBool GEnemyProcess::BasicDamageCheck() {
 
 
-  TInt attackAmount = mSprite->mCollided.attackStrength;
-
-  DoDamage(attackAmount);
-  StartBlink(BLINK_TIME);
+//  TInt attackAmount = mSprite->mCollided.attackStrength;
+//
+//  DoDamage(attackAmount);
+//  StartBlink(BLINK_TIME);
 
   return ETrue;
 }

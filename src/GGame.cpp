@@ -1,7 +1,8 @@
 #include "Game.h"
 #include "GGame.h"
 #include "GPlayer.h"
-
+#include "Camera.h"
+#include "GResources.h"
 static TUint32 start;
 
 BFont *gFont8x8, *gFont16x16;
@@ -34,6 +35,17 @@ GGame::GGame() {
   gSoundPlayer.Init(6 /*channels*/);
 #endif
 
+  gDisplay.SetColor(COLOR_WHITE, 255, 255, 255);
+  gDisplay.SetColor(ASSAULT_COLOR, 255, 50, 50);
+  gDisplay.SetColor(BOMBER_COLOR, 50, 255, 50);
+  gDisplay.SetColor(SCOUT_COLOR, 255, 50, 255);
+  Camera::mZ = CAMERA_VZ;
+
+//  const TUint8 BULLET_COLOR = 217;
+//  const TUint8 EBULLET_COLOR = 218;
+//  const TUint8 BOSS_COLOR = 219;
+//  const TUint8 SCOUT_COLOR = 222;
+//  const TUint8 STAR_COLOR = 223;
   // preload bitmaps
   // MAX_BITMAP is defined in GResource.h.
   //  for (TInt16 slot = 0; slot <= MAX_BBITMAP; slot++) {
@@ -124,20 +136,20 @@ void GGame::ToggleDebugMenu() {
  *******************************************************************************/
 
 void GGame::ToggleInventory() {
-  if (GPlayer::mGameOver || mGameMenu) {
-    return;
-  }
-  if (mInventory) {
-    delete mInventory;
-    mInventory = ENull;
-    if (!mDebugMenu) {
-      gGameEngine->Resume();
-    }
-  }
-  else {
-    gGameEngine->Pause();
-  }
-  gControls.dKeys = 0;
+//  if (GPlayer::mGameOver || mGameMenu) {
+//    return;
+//  }
+//  if (mInventory) {
+//    delete mInventory;
+//    mInventory = ENull;
+//    if (!mDebugMenu) {
+//      gGameEngine->Resume();
+//    }
+//  }
+//  else {
+//    gGameEngine->Pause();
+//  }
+//  gControls.dKeys = 0;
 }
 
 /*******************************************************************************
@@ -200,6 +212,8 @@ void GGame::Run() {
   while (!done) {
     Random(); // randomize
     mShmoo.Set(TUint8(mShmoo.r + 16), TUint8(mShmoo.g + 16), TUint8(mShmoo.b + 16));
+    Camera::Move();
+
     gDisplay.displayBitmap->SetColor(COLOR_SHMOO, mShmoo);
     gDisplay.displayBitmap->SetColor(COLOR_SHMOO_RED, mShmoo.r, 20, 20);
     gDisplay.displayBitmap->SetColor(COLOR_SHMOO_GREEN, 20, mShmoo.g, 20);

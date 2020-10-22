@@ -7,9 +7,6 @@
 #include "GResources.h"
 #include "GPlayerBulletProcess.h"
 #include "GBossProcess.h"
-#include "../../common/GSpellOverlayProcess.h"
-#include "GBossProcess.h"
-#include "../../common/GSpellOverlayProcess.h"
 
 #define DEBUGME
 #undef DEBUGME

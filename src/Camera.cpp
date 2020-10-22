@@ -10,7 +10,7 @@ TFloat Camera::mZ = 0;
 
 TFloat Camera::mVX = 0;
 TFloat Camera::mVY = 0;
-TFloat Camera::mVZ = 0;
+TFloat Camera::mVZ = CAMERA_VZ;
 
 //
 //Camera::Camera() {

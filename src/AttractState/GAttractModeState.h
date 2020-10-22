@@ -2,7 +2,7 @@
 #define EVADE2_GATTRACTMODESTATE_H
 
 #include "Game.h"
-
+#include "GEnemySprite.h"
 enum {
   ATTRACT_STATE_SCOUT,
   ATTRACT_STATE_BOMBER,
@@ -19,6 +19,7 @@ public:
 
 private:
   TInt16 mState;
+  GEnemySprite *mEnemySprite;
 };
 
 

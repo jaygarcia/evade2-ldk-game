@@ -77,5 +77,17 @@ const TUint16 CONTROL_INVENTORY = BUTTONR;
 const TUint16 CONTROL_TARGET = BUTTONL;
 const TUint16 CONTROL_DEBUG = BUTTON_SELECT;
 
+struct EnemyConfig {
+  EnemyConfig() {
+    mX = mY = mZ = 0;
+    mVX = mVY = mVZ = 0;
+  }
+  TInt16 mX;
+  TInt16 mY;
+  TInt16 mZ;
+  TInt16 mVX;
+  TInt16 mVY;
+  TInt16 mVZ;
+};
 
 #endif //MODITE_GAME_H

@@ -405,6 +405,12 @@ const TUint8 COLOR_YELLOW = 214;
 const TUint8 COLOR_SPACE = 215;
 
 
+
+
+
+const float CAMERA_VZ = 8;
+
+
 const TUint8 SHMOO_COLOR = 216;
 const TUint8 BULLET_COLOR = 217;
 const TUint8 EBULLET_COLOR = 218;

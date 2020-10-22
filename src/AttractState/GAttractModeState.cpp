@@ -35,7 +35,20 @@ struct attract_data {
 };
 
 
+
 GAttractModeState::GAttractModeState() : BGameEngine(gViewPort) {
+
+  mEnemySprite = new GEnemySprite();
+  mEnemySprite->mVX = 0;
+  mEnemySprite->mVY = 0;
+  mEnemySprite->mVZ = 0;
+
+
+  mEnemySprite->InitEnemyType(ENEMY_SCOUT);
+
+  mEnemySprite->mX = 180;
+  mEnemySprite->mY = 100;
+  mEnemySprite->mZ = CAMERA_VZ  + 1;
 
 //  gDisplay.SetColor(COLOR_TEXT, 255, 255, 255);
 //  gDisplay.SetColor(COLOR_TEXT_BG, 255, 92, 93);
@@ -50,6 +63,8 @@ void GAttractModeState::PreRender() {
 }
 
 void GAttractModeState::PostRender() {
+  mEnemySprite->Move();
+  mEnemySprite->Render(gViewPort);
 //  mContainer->Render(30, 10);
 //  printf("GAttractModeState::PostRender()\n");
 }

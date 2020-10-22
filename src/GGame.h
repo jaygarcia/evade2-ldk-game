@@ -3,7 +3,6 @@
 
 //#include "Game.h"
 #include <BApplication.h>
-#include "common/GSavedGameList.h"
 #include "GStarFieldProcess.h"
 
 class BGameEngine;
@@ -44,6 +43,7 @@ public:
   void ToggleDebugMenu();
   TBool IsGameState();
   BGameEngine *CurrentState();
+  TUint16 mWave;
 
   static TBool mDebug;
 protected:

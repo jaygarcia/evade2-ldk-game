@@ -6,12 +6,6 @@
 #include "GPlayer.h"
 #include "GEnemySprite.h"
 
-enum {
-  ENEMY_ASSAULT,
-  ENEMY_BOMBER,
-  ENEMY_SCOUT
-};
-
 
 
 class GEnemyProcess : public GProcess {

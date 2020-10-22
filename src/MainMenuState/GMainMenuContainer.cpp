@@ -2,7 +2,6 @@
 #include "GStartWidget.h"
 #include "common/GButtonWidget.h"
 #include "GMainMenuProcess.h"
-#include "common/GSavedGameList.h"
 
 GMainMenuContainer::GMainMenuContainer(TInt aX, TInt aY, GMainMenuProcess *aProcess) : GDialogWidget("Menu", aX, aY) {
   mProcess = aProcess;
