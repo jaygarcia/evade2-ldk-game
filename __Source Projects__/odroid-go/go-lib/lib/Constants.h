@@ -1,0 +1,31 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+#include "freertos/FreeRTOS.h"
+#include "esp_system.h"
+#include "esp_event.h"
+
+
+// INPUT GPIO
+#define ODROID_GAMEPAD_IO_MENU GPIO_NUM_13
+#define ODROID_GAMEPAD_IO_VOLUME GPIO_NUM_0
+
+#define ODROID_GAMEPAD_IO_X ADC1_CHANNEL_6
+#define ODROID_GAMEPAD_IO_Y ADC1_CHANNEL_7
+
+#define ODROID_GAMEPAD_IO_A GPIO_NUM_32
+#define ODROID_GAMEPAD_IO_B GPIO_NUM_33
+
+#define ODROID_GAMEPAD_IO_SELECT GPIO_NUM_27
+#define ODROID_GAMEPAD_IO_START GPIO_NUM_39
+
+/** BLUE LED **/
+#define BLUE_LED GPIO_NUM_2;
+
+
+/** SPI **/
+
+
+
+
+#endif
