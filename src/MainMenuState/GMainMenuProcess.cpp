@@ -1,7 +1,7 @@
 #include "GMainMenuProcess.h"
 
 GMainMenuProcess::GMainMenuProcess() : BProcess() {
-  mTimer = TIMEOUT;
+  mTimer = 10 * FRAMES_PER_SECOND;
   // mShowHighScores = ETrue;
   mContainer = new GMainMenuContainer(0, 0, this);
 }
@@ -11,7 +11,7 @@ GMainMenuProcess::~GMainMenuProcess() {
 }
 
 void GMainMenuProcess::ResetTimer() {
-  mTimer = TIMEOUT;
+//  mTimer = TIMEOUT;
 }
 
 TBool GMainMenuProcess::RunBefore() {
@@ -21,8 +21,9 @@ TBool GMainMenuProcess::RunBefore() {
 TBool GMainMenuProcess::RunAfter() {
   mContainer->Render(120, 130);
   mContainer->Run();
-
-  if (mTimer > 10) {
+  mTimer --;
+//  printf("mTimer = %i\n", mTimer);
+  if (mTimer < TIMEOUT) {
     gGame->SetState(GAME_STATE_ATTRACT_MODE);
     return EFalse;
   }

@@ -18,7 +18,7 @@ public:
 
 private:
   TBool mShowHighScores;
-  TInt mTimer;
+  TInt32 mTimer;
   GDialogWidget *mContainer;
 };
 

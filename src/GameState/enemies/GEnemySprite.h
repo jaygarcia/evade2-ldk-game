@@ -20,9 +20,9 @@
 
 
 enum {
-  ENEMY_ASSAULT,
+  ENEMY_SCOUT,
   ENEMY_BOMBER,
-  ENEMY_SCOUT
+  ENEMY_ASSAULT,
 };
 
 
@@ -36,10 +36,12 @@ public:
 
 public:
   TBool Render(BViewPort *aViewPort) OVERRIDE;
-  void InitEnemyType(TInt16 aEnemyType);
+  void InitEnemyType(TInt aEnemyType);
 
 public:
   TFloat mMeter;
+  TInt mType;
+  TFloat mVTheta;
 };
 
 #endif

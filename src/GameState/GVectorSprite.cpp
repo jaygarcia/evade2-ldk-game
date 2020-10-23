@@ -23,8 +23,9 @@ TBool GVectorSprite::ExplodeVectorGraphic(const TInt8 *graphic, TFloat x, TFloat
     x1 = seg.x1;
     y1 = seg.y1;
 
-    printf("Row %i : [%i][%i] [%i][%i]\n", i, (TInt16)x0, (TInt16)y0, (TInt16)x1, (TInt16)y1);
-    scaleFactor = 1;
+//    printf("Row %i : [%i][%i] [%i][%i]\n", i, (TInt16)x0, (TInt16)y0, (TInt16)x1, (TInt16)y1);
+//    scaleFactor = 1;
+
     if (scaleFactor) {
       x0 /= scaleFactor;
       y0 /= scaleFactor;
@@ -40,15 +41,28 @@ TBool GVectorSprite::ExplodeVectorGraphic(const TInt8 *graphic, TFloat x, TFloat
     }
 
 
-    TBool xInBounds = (x0 >= 0) && (x0 <= DISPLAY_WIDTH) && (y0 >= 0) && (y0 < DISPLAY_HEIGHT),
-        yInBounds = (x1 >= 0) && (x1 <= DISPLAY_WIDTH) && (y1 >= 0) && (y1 < DISPLAY_HEIGHT);
 
-//    if ((! xInBounds) && !(yInBounds)) {
-//      return drawn = EFalse;
-//    }
+    TInt16 drawX1 = x0 * cost - y0 * sint + x,
+        drawY1 = y0 * cost + x0 * sint + y,
+        drawX2 = x1 * cost - y1 * sint + x,
+        drawY2 = y1 * cost + x1 * sint + y;
 
-    gDisplay.renderBitmap->DrawLine(ENull, x0 * cost - y0 * sint + x, y0 * cost + x0 * sint + y,
-                                    x1 * cost - y1 * sint + x, y1 * cost + x1 * sint + y, color);
+    TBool xInBounds = (drawX1 >= 0) && (drawX1 <= DISPLAY_WIDTH) && (drawY1 >= 0) && (drawY1 < DISPLAY_HEIGHT),
+        yInBounds = (drawX2 >= 0) && (drawX2 <= DISPLAY_WIDTH) && (drawY2 >= 0) && (drawY2 < DISPLAY_HEIGHT);
+
+    if ((! xInBounds) && !(yInBounds)) {
+      continue;
+    }
+
+    gDisplay.renderBitmap->DrawLine(
+      ENull,
+      drawX1,
+      drawY1,
+      drawX2,
+      drawY2,
+      color
+    );
+    drawn = true;
   }
   return drawn;
 }
@@ -70,10 +84,10 @@ TBool GVectorSprite::Render(BViewPort *aViewPort) {
   // uint8_t color = isEnemy ? 5 : 255;
 
   if (flags & OFLAG_EXPLODE) {
-      ExplodeVectorGraphic(mLines, cx, cy, TFloat(mTheta), 1 / ratio, mState, this->mColor);
+    ExplodeVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, mState, this->mColor);
   }
   else {
-    bool drawn = DrawVectorGraphic(mLines, cx, cy, TFloat(mTheta), 1 / ratio, this->mColor);
+    bool drawn = DrawVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, this->mColor);
     if ((!drawn) && isEnemy) {
 
       // draw radar blip

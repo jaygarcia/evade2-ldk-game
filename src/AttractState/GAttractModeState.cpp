@@ -39,16 +39,17 @@ struct attract_data {
 GAttractModeState::GAttractModeState() : BGameEngine(gViewPort) {
 
   mEnemySprite = new GEnemySprite();
-  mEnemySprite->mVX = 0;
+  mEnemySprite->InitEnemyType(ENEMY_ASSAULT);
+
+//  mEnemySprite->mVX = +5;
   mEnemySprite->mVY = 0;
   mEnemySprite->mVZ = 0;
 
 
-  mEnemySprite->InitEnemyType(ENEMY_SCOUT);
 
-  mEnemySprite->mX = 180;
-  mEnemySprite->mY = 100;
-  mEnemySprite->mZ = CAMERA_VZ  + 1;
+//  mEnemySprite->mX = -550;
+//  mEnemySprite->mY = -450;
+  mEnemySprite->mVZ = CAMERA_VZ - 5;
 
 //  gDisplay.SetColor(COLOR_TEXT, 255, 255, 255);
 //  gDisplay.SetColor(COLOR_TEXT_BG, 255, 92, 93);
@@ -64,7 +65,30 @@ void GAttractModeState::PreRender() {
 
 void GAttractModeState::PostRender() {
   mEnemySprite->Move();
-  mEnemySprite->Render(gViewPort);
+  if (! mEnemySprite->Render(gViewPort)) {
+    switch (mEnemySprite->mType) {
+      case ENEMY_SCOUT:
+        mEnemySprite->InitEnemyType(ENEMY_ASSAULT);
+        break;
+      case ENEMY_ASSAULT:
+        mEnemySprite->InitEnemyType(ENEMY_BOMBER);
+        break;
+      case ENEMY_BOMBER:
+        mEnemySprite->InitEnemyType(ENEMY_SCOUT);
+        break;
+
+    }
+//  mEnemySprite->mVX = +5;
+    mEnemySprite->mVY = 0;
+    mEnemySprite->mVZ = 0;
+//  mEnemySprite->mX = -550;
+//  mEnemySprite->mY = -450;
+    mEnemySprite->mVZ = CAMERA_VZ - 16;
+
+
+
+
+  }
 //  mContainer->Render(30, 10);
 //  printf("GAttractModeState::PostRender()\n");
 }

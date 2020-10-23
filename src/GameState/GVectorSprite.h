@@ -55,7 +55,7 @@ public:
   TUint8 mFlags;
   TInt8 mTimer;
   TInt16 mState; // arbitrary data TInt8 for AI use (can be explosion step, etc.)
-  TInt16 mTheta; // rotation around Z (in degrees, 0-60)
+  TFloat mTheta; // rotation around Z (in degrees, 0-60)
   TUint8 mColor;
   TUint8 mPad;
 

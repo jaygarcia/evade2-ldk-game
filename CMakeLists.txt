@@ -37,6 +37,7 @@ SET(MODITE_INCLUDE_DIRS
     ${CMAKE_SOURCE_DIR}/src/GameState/enemies/grunts
     ${CMAKE_SOURCE_DIR}/src/GameState/enemies/mid-bosses
     ${CMAKE_SOURCE_DIR}/src/GameState/status
+    ${CMAKE_SOURCE_DIR}/src/img/
     ${CMAKE_SOURCE_DIR}/src/AttractState
     ${CMAKE_SOURCE_DIR}/src/GameMenuState
     ${CMAKE_SOURCE_DIR}/src/DebugMenuState
