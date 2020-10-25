@@ -36,7 +36,7 @@ public:
 
 public:
   TBool Render(BViewPort *aViewPort) OVERRIDE;
-  void InitEnemyType(TInt aEnemyType);
+  virtual void InitEnemyType(TInt aEnemyType);
 
 public:
   TFloat mMeter;
