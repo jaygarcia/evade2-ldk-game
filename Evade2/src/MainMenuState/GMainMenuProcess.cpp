@@ -1,7 +1,7 @@
 #include "GMainMenuProcess.h"
 
 GMainMenuProcess::GMainMenuProcess() : BProcess() {
-  mTimer = 10 * FRAMES_PER_SECOND;
+  mTimer = 1;
   // mShowHighScores = ETrue;
   mContainer = new GMainMenuContainer(0, 0, this);
 }

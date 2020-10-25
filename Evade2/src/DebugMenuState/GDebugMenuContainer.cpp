@@ -1,6 +1,5 @@
 #include "GDebugMenuContainer.h"
 #include "GDebugWidget.h"
-#include "GLevelUpPlayer.h"
 #include "GDebugButtonWidget.h"
 #include "GGameState.h"
 
@@ -31,7 +30,6 @@ void GDebugMenuContainer::SetState(TInt aState) {
   if (mState == DEBUG_MAIN) {
     mTitle = (char*)"DEBUG MODE";
     AddWidget((BWidget &) *new GDebugWidget());
-    AddWidget((BWidget &) *new GLevelUpPlayer());
   }
 
   mCurrentWidget = mList.First();

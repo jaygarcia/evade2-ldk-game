@@ -25,7 +25,6 @@ const TInt DEFAULT_PLAYER_HITPOINTS = 200;
 struct GPlayer {
   static void Init() {
     printf("Init GPlayer\n");
-    mNextLevel = 100;
     mMaxHitPoints = DEFAULT_PLAYER_HITPOINTS;
     mHitPoints = mMaxHitPoints;
     mInvulnerable = EFalse;
@@ -41,7 +40,6 @@ struct GPlayer {
   static void ReadFromStream(BMemoryStream &stream);
   static TUint16 GetSpellSlot();
 
-  static TUint32 mNextLevel, mExperience;
   static TInt16 mHitPoints, mMaxHitPoints;
   static TBool mInvulnerable;
   static GPlayerProcess *mProcess;

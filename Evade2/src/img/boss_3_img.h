@@ -1,10 +1,10 @@
-#ifndef BOSS_3_IMG_H
-#define BOSS_3_IMG_H
-// SVG Graphic source: svg_docs/enemies_output_from_ai/heavy_bomber_2_img.svg
-// Number bytes 43
-#include "BTypes.h"
 
-const  TInt8 boss_3_img[] = {
+#ifndef ENEMY_BOSS_3_IMG_H
+#define ENEMY_BOSS_3_IMG_H
+#include "BTypes.h"
+// SVG Graphic source: svg_docs/enemies_output_from_ai/boss_3_img.svg
+// Number bytes 43
+const TInt8 boss_3_img[] = {
     (TInt8)128,    // Width (128 px)
     74,    // Height (74 px)
     10,    // Number of rows of coords (10)

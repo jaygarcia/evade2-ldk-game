@@ -181,13 +181,6 @@ void GGameState::PositionCamera() {
   TFloat xx = playerCenter.x - ww,
     yy = playerCenter.y - hh;
 
-  if (GPlayer::mTargeted) {
-    mCameraTimer = TARGET_PAN_DURATION;
-    // shift camera towards targeted enemy if applicable
-    TPoint targetCenter = GPlayer::mTargeted->Center();
-    xx = xx * .6 + (targetCenter.x - ww) * .4;
-    yy = yy * .6 + (targetCenter.y - hh) * .4;
-  }
   if (mCameraTimer > 0) {
     mCameraTimer--;
     TFloat cameraInertia = exp(-FACTOR * TFloat(mCameraTimer) / TARGET_PAN_DURATION);

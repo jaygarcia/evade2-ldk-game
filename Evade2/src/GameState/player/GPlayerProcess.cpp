@@ -2,7 +2,6 @@
 #include "GPlayer.h"
 #include "GPlayerSprite.h"
 #include "GGamePlayfield.h"
-#include "GPlayerAnimations.h"
 #include "GStatProcess.h"
 #include "GResources.h"
 #include "GPlayerBulletProcess.h"
@@ -14,16 +13,7 @@
 const TFloat SPELL_DISTANCE = 200.0;
 
 const TUint16 IDLE_STATE = 0;
-const TUint16 WALK_STATE = 1;
-const TUint16 SWORD_CHARGE_STATE = 2;
-const TUint16 SWORD_ATTACK_STATE = 3;
 const TUint16 FALL_STATE = 4;
-const TUint16 HIT_LIGHT_STATE = 5;
-const TUint16 HIT_MEDIUM_STATE = 6;
-const TUint16 HIT_HARD_STATE = 7;
-const TUint16 QUAFF_STATE = 8;
-const TUint16 SPELL_STATE = 9;
-
 const TInt16 BLINK_TIME = FRAMES_PER_SECOND;
 
 DIRECTION GPlayerProcess::mLastDirection = DIRECTION_DOWN;
