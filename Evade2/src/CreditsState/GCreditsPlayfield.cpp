@@ -7,7 +7,7 @@ GCreditsPlayfield::GCreditsPlayfield(GGameState *aGameState) {
 }
 
 GCreditsPlayfield::~GCreditsPlayfield() {
-  gResourceManager.ReleaseBitmapSlot(MAIN_MENU_SLOT1);
+  //
 }
 
 void GCreditsPlayfield::Animate() {

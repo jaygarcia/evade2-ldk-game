@@ -11,7 +11,7 @@ GMainMenuPlayfield::GMainMenuPlayfield(GGameState *aGameState) {
 }
 
 GMainMenuPlayfield::~GMainMenuPlayfield() {
-  gResourceManager.ReleaseBitmapSlot(MAIN_MENU_SLOT1);
+  // gResourceManager.ReleaseBitmapSlot(MAIN_MENU_SLOT1);
 //  delete mFont8;
   delete mFont16;
 }
