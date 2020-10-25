@@ -11,8 +11,8 @@ const  TInt8 environment_asteroid_img_small[] = {
 
 // ORIGINAL
 const  TInt8 environment_asteroid_img_large[] = {
-    128, // width
-    128, // height
+    (TInt8) 128, // width
+    (TInt8) 128, // height
     13, // num rows
     48-64, 16-64, 32-64, 16-64,
     32-64, 16-64, 0-64, 48-64,
