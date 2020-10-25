@@ -9,12 +9,6 @@ GPlayerSprite::GPlayerSprite(GGameState *aGameState) : GAnchorSprite(
   Name("PLAYER");
   type = STYPE_PLAYER;
   SetCMask(STYPE_ENEMY | STYPE_EBULLET | STYPE_OBJECT); // collide with enemy, enemy attacks, and environment
-  w = 24;
-  h = 16;
-  cx = 8;
-  cy = 0;
-  mSwordCharge = -1;
-//  mSpriteSheet = gResourceManager.LoadSpriteSheet(CHARA_HERO_BMP_SPRITES);
   SetFlags(SFLAG_ANCHOR | SFLAG_CHECK); // SFLAG_SORTY
 }
 

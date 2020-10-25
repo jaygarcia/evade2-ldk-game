@@ -3,7 +3,6 @@
 #include "GPlayer.h"
 
 const TInt VELOCITY = 4;
-const TInt VELOCITY_WITH_GLOVES = VELOCITY + 5;
 
 class BulletSprite : public GAnchorSprite {
 public:
