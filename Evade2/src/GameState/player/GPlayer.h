@@ -28,17 +28,16 @@ struct GPlayer {
     mMaxHitPoints = DEFAULT_PLAYER_HITPOINTS;
     mHitPoints = mMaxHitPoints;
     mInvulnerable = EFalse;
-
-    //
     mGameOver = EFalse;
     mActiveBoss = ENull;
+
+
   }
 
 
 
   static void WriteToStream(BMemoryStream &stream);
   static void ReadFromStream(BMemoryStream &stream);
-  static TUint16 GetSpellSlot();
 
   static TInt16 mHitPoints, mMaxHitPoints;
   static TBool mInvulnerable;

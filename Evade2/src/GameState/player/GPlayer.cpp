@@ -21,7 +21,3 @@ void GPlayer::ReadFromStream(BMemoryStream &stream) {
 void GPlayer::Dump() {
   printf("GPlayer\n");
 }
-
-TUint16 GPlayer::GetSpellSlot() {
-  return 0;
-}
