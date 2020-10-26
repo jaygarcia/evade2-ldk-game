@@ -264,6 +264,12 @@ void GGame::Run() {
           delete gGameEngine;
           gGameEngine = new GVictoryState((GGameState *)gGameEngine);
           break;
+
+        case GAME_STATE_CREDITS:
+          delete gGameEngine;
+          gGameEngine = new GCreditsState((GGameState *)gGameEngine);
+          break;
+
         case GAME_STATE_QUIT:
           done = ETrue;
         default:

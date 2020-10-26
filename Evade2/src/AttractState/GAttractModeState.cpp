@@ -60,6 +60,9 @@ GAttractModeState::~GAttractModeState() {
 }
 
 void GAttractModeState::PreRender() {
+  if (gControls.WasPressed(BUTTON_ANY)) {
+    gGame->SetState(GAME_STATE_MAIN_MENU);
+  }
 //  mContainer->Run();
 }
 

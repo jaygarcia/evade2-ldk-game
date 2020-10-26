@@ -57,6 +57,7 @@ const TUint16 FACTOR = FRAMES_PER_SECOND / 30;
 #include "GAttractModeState.h"
 #include "GVictoryState.h"
 #include "DebugMenuState/GDebugMenuState.h"
+#include "GCreditsState.h"
 //#include "GInventory.h"
 
 extern BViewPort   *gViewPort;

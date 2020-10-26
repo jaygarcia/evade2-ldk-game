@@ -1,9 +1,10 @@
 #include "Game.h"
 #include "GMusicWidget.h"
 #include "GSfxWidget.h"
-#include "GResetWidget.h"
+// #include "GResetWidget.h"
 #include "GExitWidget.h"
-
+#include "GVectorTitle.h"
+#include "common/GButtonWidget.h"
 
 const TUint8 WIDGET_CONTAINER_Y = 60;
 
@@ -12,7 +13,8 @@ public:
     OptionsContainer(TInt aX, TInt aY) : GDialogWidget("Options", aX, aY) {
       AddWidget((BWidget &) *new GMusicWidget());
       AddWidget((BWidget &) *new GSfxWidget());
-      AddWidget((BWidget &) *new GResetWidget());
+      AddWidget((BWidget &) *new GButtonWidget("Credits", GAME_STATE_CREDITS));
+      // AddWidget((BWidget &) *new GResetWidget());
       AddWidget((BWidget &) *new GExitWidget());
     }
 };
@@ -57,6 +59,7 @@ public:
 //      gResourceManager.LoadBitmap(TITLE_BMP, BKG_SLOT, IMAGE_ENTIRE);
 //      mBackground = gResourceManager.GetBitmap(BKG_SLOT);
 //      gDisplay.SetPalette(mBackground);
+      mTitle = new GVectorTitle(60, 70, "OPTIONS");
     }
 
     ~GMainOptionsPlayfield() OVERRIDE {
@@ -66,9 +69,15 @@ public:
 public:
     void Render() OVERRIDE {
 //      gDisplay.renderBitmap->CopyPixels(mBackground);
+      mTitle->Render();
+    }
+
+    void Animate() {
+      mTitle->Move();
     }
 
 public:
+    GVectorTitle *mTitle;
 //    BBitmap *mBackground;
 };
 

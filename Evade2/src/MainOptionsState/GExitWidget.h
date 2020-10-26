@@ -11,7 +11,7 @@ public:
 //    ~GExitWidget() = default;
 public:
     TInt Render(TInt aX, TInt aY) OVERRIDE  {
-      aY += 18;
+      // aY += 18;
       GButtonWidget::Render(aX, aY);
       return gWidgetTheme.GetFont(WIDGET_TITLE_FONT)->mHeight - 4;
     };

@@ -4,7 +4,7 @@
 #include "Game.h"
 #include "GMainMenuContainer.h"
 
-static const TInt TIMEOUT = 30 * 5;
+static const TInt TIMEOUT = 5 * FRAMES_PER_SECOND;
 
 class GMainMenuProcess : public BProcess {
 public:
