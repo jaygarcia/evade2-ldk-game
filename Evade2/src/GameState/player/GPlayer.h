@@ -30,6 +30,8 @@ struct GPlayer {
     mInvulnerable = EFalse;
     mGameOver = EFalse;
     mActiveBoss = ENull;
+    mNumBullets = 0;
+    mMaxBullets = 4;
 
   }
 
@@ -45,6 +47,9 @@ struct GPlayer {
   static GGameState *mGameState;
   static TBool mGameOver;
   static GBossProcess *mActiveBoss;
+
+  static TInt8 mNumBullets;
+  static TInt8 mMaxBullets;
 
   static void Dump();
 };

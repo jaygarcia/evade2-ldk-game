@@ -5,11 +5,11 @@
 #include <GameState/GProcess.h>
 
 class GGameState;
-class BulletSprite;
+class GPlayerBulletSprite;
 
 class GPlayerBulletProcess : public GProcess {
 public:
-  GPlayerBulletProcess(GGameState *aGameState, TFloat aMultiplier);
+  GPlayerBulletProcess(GGameState *aGameState);
   ~GPlayerBulletProcess() OVERRIDE;
 
 public:
@@ -18,9 +18,11 @@ public:
 
 protected:
   GGameState *mGameState;
-  BulletSprite *mSprite;
+  GPlayerBulletSprite *mSprite;
   TFloat mAge;
   TFloat mRange;
+  TFloat mX, mY, mZ, mState;
+  TFloat mVX, mVY, mVZ, mTheta;
 };
 
 

@@ -53,7 +53,7 @@ public:
   TFloat mX, mY, mZ;    // coordinates
   TFloat mVX, mVY, mVZ; // velocity in x,y,z
   TUint8 mFlags;
-  TInt8 mTimer;
+  TInt16 mTimer;
   TInt16 mState; // arbitrary data TInt8 for AI use (can be explosion step, etc.)
   TFloat mTheta; // rotation around Z (in degrees, 0-60)
   TUint8 mColor;

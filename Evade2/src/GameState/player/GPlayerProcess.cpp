@@ -115,9 +115,10 @@ TBool GPlayerProcess::RunAfter() {
 //    if (GPlayer::mTargeted->Clipped() || !gControls.IsPressed(CONTROL_TARGET)) {
 //      GPlayer::mTargeted = ENull;
 //    }
-  if (gControls.WasPressed(CONTROL_SHOOT)) {
+  if (gControls.WasPressed(CONTROL_SHOOT) && GPlayer::mNumBullets < GPlayer::mMaxBullets) {
     printf("CONTROL_SHOOT\n");
-
+//    new GPlayerSprite();
+    mGameState->AddProcess(new GPlayerBulletProcess(mGameState));
   }
 
   if (gControls.IsPressed(CONTROL_BOOST)) {
@@ -146,26 +147,6 @@ TBool GPlayerProcess::RunAfter() {
     }
   }
 
-//    if (GPlayer::mActiveBoss && GPlayer::mActiveBoss->mSprite &&
-//        !GPlayer::mActiveBoss->mSprite->Clipped()) {
-//      GPlayer::mTargeted = GPlayer::mActiveBoss->mSprite;
-//    } else if (GPlayer::mClosestEnemy && !GPlayer::mClosestEnemy->Clipped()) {
-//      GPlayer::mTargeted = GPlayer::mClosestEnemy;
-//    }
-//  }
-//  if (mBlinkTimer > 1) {
-//    mBlinkTimer--;
-//    if ((mBlinkTimer & 1u) == 0) {
-//      mSprite->ClearFlags(SFLAG_RENDER);
-//    } else {
-//      mSprite->SetFlags(SFLAG_RENDER);
-//    }
-//  } else if (mBlinkTimer == 1) {
-//    mBlinkTimer--;
-//    mSprite->SetFlags(SFLAG_RENDER);
-//    GPlayer::mInvulnerable = EFalse;
-//  }
-//  mSprite->cType = 0;
 
   return ETrue;
 }
