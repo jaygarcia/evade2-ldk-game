@@ -220,6 +220,7 @@ void GGame::Run() {
 
     // TODO: Add all the basic colors here
     gDisplay.SetColor(STAR_COLOR, 180, 180, 180);
+    gDisplay.SetColor(COLOR_HUD_FG, 200, 200, 200);
     gDisplay.SetColor(COLOR_SPACE, 0, 0, 0);
 
     // The master game loop needs to clear the screen because the star field is ALWAYS running

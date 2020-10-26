@@ -1,17 +1,15 @@
 #ifndef MODITE_GPLAYERSPRITE_H
 #define MODITE_GPLAYERSPRITE_H
 
-#include "GAnchorSprite.h"
+#include "GVectorSprite.h"
 
-class GPlayerSprite : public GAnchorSprite {
+class GPlayerSprite : public GVectorSprite {
 public:
-  EXPLICIT GPlayerSprite(GGameState *aGameState);
+  EXPLICIT GPlayerSprite();
 
 public:
   TBool Render(BViewPort *aViewPort) OVERRIDE;
-
 public:
-  TFloat mSwordCharge;
 };
 
 #endif //MODITE_GPLAYERSPRITE_H

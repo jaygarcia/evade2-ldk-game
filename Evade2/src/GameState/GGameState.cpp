@@ -40,19 +40,23 @@ void GGameState::Init() {
 
   mGamePlayfield = mNextGamePlayfield = ENull;
 
+
   // Clear BObject programs
-  GGamePlayfield::ResetCache();
   gViewPort->SetRect(TRect(0, 16, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1));
   gViewPort->Offset(0, 16);
 
   gDisplay.SetColor(COLOR_TEXT_BG, 0, 0, 0);
   gDisplay.SetColor(COLOR_TEXT, 255, 255, 255);
+
   GPlayer::Init();
+  GPlayer::mProcess = new GPlayerProcess(this);
+  AddProcess(GPlayer::mProcess);
+
 }
 
 // Constructor
 GGameState::GGameState() : BGameEngine(gViewPort) {
-
+  Init();
 }
 
 // Constructor
@@ -235,6 +239,7 @@ void GGameState::GameOver() {
   //gSoundPlayer.TriggerSfx(SFX_PLAYER_DEATH_WAV);
   gControls.Reset();
   GPlayer::mGameOver = ETrue;
+  Reset(); // remove sprites and processes
 }
 
 /*******************************************************************************

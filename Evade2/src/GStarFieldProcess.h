@@ -16,7 +16,7 @@ static const TInt16 STAR_SPEED_MIN = 5; // Minimum movement in pixels per update
 static const TInt16 STAR_SPEED_MAX = 20; // Maximum movement in pixels per update. (value is inclusive)
 
 static const TUint16 RANDOM_Z_MIN = 10;
-static const TUint16 RANDOM_Z_MAX = 600;
+static const TUint16 RANDOM_Z_MAX = 300;
 
 
 class GStar {

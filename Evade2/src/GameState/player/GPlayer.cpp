@@ -2,6 +2,7 @@
 #include "GPlayer.h"
 
 TInt16 GPlayer::mHitPoints;
+TInt16 GPlayer::mBoost;
 TInt16 GPlayer::mMaxHitPoints;
 TBool GPlayer::mInvulnerable;
 
@@ -12,11 +13,6 @@ GPlayerSprite *GPlayer::mSprite;
 GGameState *GPlayer::mGameState;
 GBossProcess *GPlayer::mActiveBoss;
 
-void GPlayer::WriteToStream(BMemoryStream &stream) {
-}
-
-void GPlayer::ReadFromStream(BMemoryStream &stream) {
-}
 
 void GPlayer::Dump() {
   printf("GPlayer\n");

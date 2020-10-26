@@ -1,6 +1,5 @@
-
-#ifndef ENEMY_CONSOLE2_IMG_H
-#define ENEMY_CONSOLE2_IMG_H
+#ifndef CONSOLE2_IMG_H
+#define CONSOLE2_IMG_H
 #include "BTypes.h"
 // SVG Graphic source: svg_docs/enemies_output_from_ai/console2_img.svg
 // Number bytes 147
