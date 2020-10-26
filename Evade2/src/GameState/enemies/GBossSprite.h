@@ -6,7 +6,7 @@
 #include "boss_2_img.h"
 #include "boss_3_img.h"
 #include "boss_4_img.h"
-#include "bullet_img.h"
+#include "player_bullet_img.h"
 #include "ebomb_img.h"
 #include "ebullet_img.h"
 #include "GEnemySprite.h"
