@@ -46,6 +46,7 @@ public:
   TUint16 mWave;
 
   static TBool mDebug;
+  GStarFieldProcess *mStarField;
 protected:
 protected:
   TInt mState;
@@ -57,7 +58,6 @@ protected:
   BGameEngine *mDebugMenu;
   TRGB        mShmoo;
 
-  GStarFieldProcess *mStarField;
 };
 
 extern GGame *gGame;

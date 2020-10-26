@@ -12,11 +12,11 @@ static const TInt8 NUM_STARS = 90;
 static TUint32 actualTime = 0;
 static TInt32 speedMills;
 
-static const TInt16 STAR_SPEED_MIN = 5; // Minimum movement in pixels per update. (value is inclusive)
-static const TInt16 STAR_SPEED_MAX = 20; // Maximum movement in pixels per update. (value is inclusive)
+static const TInt16 STAR_SPEED_MIN = 1; // Minimum movement in pixels per update. (value is inclusive)
+static const TInt16 STAR_SPEED_MAX = 15; // Maximum movement in pixels per update. (value is inclusive)
 
-static const TUint16 RANDOM_Z_MIN = 10;
-static const TUint16 RANDOM_Z_MAX = 300;
+static const TUint16 RANDOM_Z_MIN = 400;
+static const TUint16 RANDOM_Z_MAX = 600;
 
 
 class GStar {
@@ -52,8 +52,8 @@ public:
   explicit GStarFieldProcess() {
     mCurrSpeed = 10;
     mMinSpeed = 1;
-    mBoostSpeed = false;
-    mWarp = false;
+    mBoostSpeed = EFalse;
+    mWarp = EFalse;
 
     for (TInt i = 0; i < NUM_STARS; i++) {
       InitStar(i, 0);
@@ -74,7 +74,8 @@ public:
 //      }
 //    }
   }
-
+  TBool mWarp;
+  TBool mBoostSpeed;
 
 protected:
 
@@ -100,8 +101,7 @@ protected:
 //  TFloat mStarSpeed[NUM_STARS]{};
   TInt mCurrSpeed;
   TInt mMinSpeed;
-  TBool mWarp;
-  TBool mBoostSpeed;
+
 };
 
 

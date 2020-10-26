@@ -19,6 +19,8 @@ static const TUint16 effectsList[] = {
   SFX_PLAYER_HIT_WAV,
   SFX_NEXT_ATTRACT_CHAR_WAV,
   SFX_NEXT_ATTRACT_SCREEN_WAV,
+  SFX_BOSS_EXPLODE_WAV,
+  SFX_SPEED_BOOST_WAV
 };
 
 static TUint16 FindSfxNumber(TUint16 aSfxFile) {
@@ -144,8 +146,8 @@ void  GSoundPlayer::MuteMusic(TBool aMuted) {
 
 
 void GSoundPlayer::TriggerSfx(TUint16 aSfxNumber, TInt8 aChannel) {
-  printf("GSoundPlayer::%s()\n", __FUNCTION__ );
-//  soundEngine.PlaySfx(FindSfxNumber(aSfxNumber), aChannel);
+//  printf("GSoundPlayer::%s()\n", __FUNCTION__ );
+  soundEngine.PlaySfx(FindSfxNumber(aSfxNumber), aChannel);
 }
 
 void GSoundPlayer::SfxOptionSelect() {

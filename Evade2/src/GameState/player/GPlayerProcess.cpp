@@ -6,7 +6,7 @@
 #include "GResources.h"
 #include "GPlayerBulletProcess.h"
 #include "GBossProcess.h"
-
+#include "Camera.h"
 #define DEBUGME
 #undef DEBUGME
 
@@ -115,7 +115,37 @@ TBool GPlayerProcess::RunAfter() {
 //    if (GPlayer::mTargeted->Clipped() || !gControls.IsPressed(CONTROL_TARGET)) {
 //      GPlayer::mTargeted = ENull;
 //    }
-//  } else if (gControls.WasPressed(CONTROL_TARGET)) {
+  if (gControls.WasPressed(CONTROL_SHOOT)) {
+    printf("CONTROL_SHOOT\n");
+
+  }
+
+  if (gControls.IsPressed(CONTROL_BOOST)) {
+    if (GPlayer::mBoost > 0) {
+      Camera::mVZ = CAMERA_VZ * 2;
+      GPlayer::mBoost--;
+      if (GPlayer::mBoost < 0) {
+        GPlayer::mBoost = 0;
+      }
+      else {
+        if (! gGame->mStarField->mBoostSpeed) {
+          gGame->mStarField->mBoostSpeed = ETrue;
+          gSoundPlayer.TriggerSfx(SFX_SPEED_BOOST_WAV, 4);
+        }
+      }
+    } else {
+      Camera::mVZ = CAMERA_VZ;
+    }
+  }
+  else {
+    gGame->mStarField->mBoostSpeed = EFalse;
+    Camera::mVZ = CAMERA_VZ;
+    GPlayer::mBoost++;
+    if (GPlayer::mBoost > GPlayer::mMaxHitPoints) {
+      GPlayer::mBoost = GPlayer::mMaxHitPoints;
+    }
+  }
+
 //    if (GPlayer::mActiveBoss && GPlayer::mActiveBoss->mSprite &&
 //        !GPlayer::mActiveBoss->mSprite->Clipped()) {
 //      GPlayer::mTargeted = GPlayer::mActiveBoss->mSprite;

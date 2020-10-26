@@ -25,7 +25,7 @@ static void drawMeter(TInt8 side, TInt16 value, TInt16 deltaXMeter, TInt8 deltaY
   if (side == HUD_SIDE_LEFT) { // LEFT
     for (TInt8 i = 0; i < 10; i++) {
       if (i >= value) {
-        gDisplay.renderBitmap->FillRect(ENull, 4 + deltaXMeter, y + deltaYMeter, 4 + deltaXMeter + 3,  y + deltaYMeter + 5, COLOR_HUD_FG);
+        gDisplay.renderBitmap->FillRect(ENull, 4 + deltaXMeter, y + deltaYMeter, 4 + deltaXMeter + 1,  y + deltaYMeter + 5, COLOR_HUD_FG);
       }
       else {
         gDisplay.renderBitmap->FillRect(ENull, 4 + deltaXMeter, y + deltaYMeter, 4 + deltaXMeter + 4, y + deltaYMeter + 3, COLOR_HUD_FG);
@@ -35,10 +35,10 @@ static void drawMeter(TInt8 side, TInt16 value, TInt16 deltaXMeter, TInt8 deltaY
       y -= yStep;
     }
   }
-  else { // RIGHT
+  else { // RIGHT (Speed boost)
     for (TInt8 i = 0; i < 10; i++) {
       if (i >= value) {
-        gDisplay.renderBitmap->FillRect(ENull, 310 + deltaXMeter, y + deltaYMeter, 310 + deltaXMeter + 3, y + deltaYMeter + 5, COLOR_HUD_FG);
+        gDisplay.renderBitmap->FillRect(ENull, 313 + deltaXMeter, y + deltaYMeter, 313 + deltaXMeter + 1, y + deltaYMeter + 5, COLOR_HUD_FG);
       }
       else {
         gDisplay.renderBitmap->FillRect(ENull, 310 + deltaXMeter, y + deltaYMeter, 310 + deltaXMeter + 4, y + deltaYMeter + 3, COLOR_HUD_FG);
@@ -80,7 +80,6 @@ GPlayerSprite::GPlayerSprite() : GVectorSprite() {
 }
 
 TBool GPlayerSprite::Render(BViewPort *aViewPort) {
-  printf("GPlayerSprite::Render()\n");
 
 //
 //  if (flags & PLAYER_FLAG_HIT) {

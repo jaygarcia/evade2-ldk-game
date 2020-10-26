@@ -39,7 +39,6 @@ struct GPlayer {
   static void ReadFromStream(BMemoryStream &stream);
 
   static TInt16 mHitPoints, mBoost, mMaxHitPoints;
-
   static TBool mInvulnerable;
   static GPlayerProcess *mProcess;
   static GPlayerSprite *mSprite;
