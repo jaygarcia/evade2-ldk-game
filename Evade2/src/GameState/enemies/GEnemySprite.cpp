@@ -27,6 +27,7 @@ static void init_scout(GEnemySprite *o) {
   o->mY = Camera::mY + Random(-500, 500);
   o->mZ = Camera::mZ + 1024;
   o->mVZ = CAMERA_VZ - 12;
+  o->mVZ = CAMERA_VZ;
   o->mVX = o->mVY;
   o->mTheta = Random(-50, 50);
   o->mVTheta = Random(-3, 3);
@@ -42,14 +43,16 @@ static void init_assault(GEnemySprite *o, TBool left) {
 //  o->mZ = Camera::mZ + sin(angle) * 256;
 //  o->mY = Camera::mY; //  + 64 - Random(0, 128);
 //  o->mVX = o->mVY = o->mVZ = 0;
-  o->mX = Camera::mX + Random(-500, 500);
-  o->mY = Camera::mY + Random(-500, 500);
-  o->mZ = Camera::mZ + 1024;
+  o->mX = Camera::mX;
+  o->mY = Camera::mY;
+  o->mZ = Camera::mZ + 256;
   o->mVZ = CAMERA_VZ - 12;
+  o->mVZ = CAMERA_VZ - .05;
   o->mVX = o->mVY;
 
   o->mTheta = Random(-50, 50);
   o->mVTheta = Random(-3, 3);
+  o->mTheta = 5;
   o->mState = 0;
 }
 
@@ -65,10 +68,10 @@ static void init_bomber(GEnemySprite *o) {
 //  o->mVZ = CAMERA_VZ + 1 ;// TODO: + gGame.Wave();
 //  o->mVX = o->mVY = 0;
 
-  o->mX = Camera::mX + Random(-500, 500);
-  o->mY = Camera::mY + Random(-500, 500);
+  o->mX = Camera::mX;
+  o->mY = Camera::mY;
   o->mZ = Camera::mZ + 1024;
-  o->mVZ = CAMERA_VZ - 12;
+  o->mVZ = CAMERA_VZ;
   o->mVX = o->mVY;
 
 
@@ -77,7 +80,8 @@ static void init_bomber(GEnemySprite *o) {
 }
 
 GEnemySprite::GEnemySprite() : GVectorSprite() {
-
+  mType = OTYPE_ENEMY;
+  ClearFlags(SFLAG_COLLISION);
   SetCMask(STYPE_PLAYER | STYPE_PBULLET | STYPE_OBJECT);
   SetFlags(SFLAG_CHECK);
 
@@ -122,20 +126,49 @@ TBool GEnemySprite::Render(BViewPort *aViewPort) {
     return EFalse;
   }
 
+
   TFloat zz = (mZ - Camera::mZ) * 2;
   TFloat ratio = 128 / (zz + 128);
 
-  bool isEnemy = mType == OTYPE_ENEMY;
-  // printf("is enemey = %i\n", isEnemy);
+  bool isEnemy = Type() == OTYPE_ENEMY;
+  // printf("is enemy = %i\n", isEnemy);
   TFloat cx = (Camera::mX - mX) * ratio + SCREEN_WIDTH / 2;
   TFloat cy = (Camera::mY - mY) * ratio + SCREEN_HEIGHT / 2;
 
-  return DrawVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, mColor);
+  // uint8_t color = isEnemy ? 5 : 255;
+
+  if (flags & SFLAG_EXPLODE) {
+    ExplodeVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, mState, this->mColor);
+  }
+  else {
+    bool drawn = DrawVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, this->mColor);
+    if ((!drawn) && isEnemy) {
+
+      // draw radar blip
+      TFloat dx = Camera::mX - mX,
+          dy = Camera::mY - mY,
+          angle = atan2(dy, dx);
+
+      printf("TODO: Fill Circle for enemy radar\n");
+      gDisplay.renderBitmap->DrawCircle(
+        ENull,
+        (TInt16)(SCREEN_WIDTH / 2 + cos(angle) * 90),
+        (TInt16)(SCREEN_HEIGHT / 2 + sin(angle) * 90),
+        3,
+        this->mColor
+      );
+
+    }
+  }
+
+  return ETrue;
 }
 
 void GEnemySprite::Move() {
 //  mTheta++;
-  mTheta += mVTheta;
+//  if (! (flags & SFLAG_EXPLODE)) {
+    mTheta += mVTheta;
+//  }
   mX += mVX;
   mY += mVY;
   mZ += mVZ;

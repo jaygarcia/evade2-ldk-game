@@ -21,7 +21,7 @@ public:
     mColor = COLOR_WHITE;
     mPad = 0;
     mX = mY = mZ = 0;
-    mVX = mVY = mVZ = 0;
+    mVX = mVY = mVZ = mVTheta = 0;
     mFlags = mState = mTheta = 0;
     mTimer = 0;
     mLines = ENull;
@@ -40,7 +40,14 @@ public:
 
   TBool Render(BViewPort *aViewPort) OVERRIDE;
 
+
+  void Collide(BSprite *aOther) OVERRIDE;
+
+
   void Animate() OVERRIDE {
+    if (! (flags & SFLAG_EXPLODE)) {
+      mTheta += mVTheta;
+    }
     mX += mVX;
     mY += mVY;
     mZ += mVZ;
@@ -52,6 +59,7 @@ public:
 
   TFloat mX, mY, mZ;    // coordinates
   TFloat mVX, mVY, mVZ; // velocity in x,y,z
+  TFloat mVTheta;
   TUint8 mFlags;
   TInt16 mTimer;
   TInt16 mState; // arbitrary data TInt8 for AI use (can be explosion step, etc.)

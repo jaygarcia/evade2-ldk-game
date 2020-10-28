@@ -443,27 +443,29 @@ const TUint8 COLOR_TEXT = 255;
 const TInt16 COLOR_TEXT_TRANSPARENT = -1;
 
 
-const TUint16 OFLAG_TYPE_MASK = 0x07;
+const TFloat DELTA_CONTROL = 11;
+
+const TUint32 OFLAG_TYPE_MASK = 0x07;
 // Object is an enemy
-const TUint16 OTYPE_ENEMY = 0;
+const TUint32 OTYPE_ENEMY = 0;
 // Object is player's bullet
-const TUint16 OTYPE_PLAYER_BULLET = 1;
+const TUint32 OTYPE_PLAYER_BULLET = 1;
 // Object is enemy bullet
-const TUint16 OTYPE_ENEMY_BULLET = 2;
+const TUint32 OTYPE_ENEMY_BULLET = 2;
 // STRING means lines is a character string to be rendered in 3D
-const TUint16 OTYPE_STRING = 3;
-const TUint16 OTYPE_ASTEROID = 4;
+const TUint32 OTYPE_STRING = 3;
+const TUint32 OTYPE_ASTEROID = 4;
 // MOON means lines is ignored and a circle is rendered, as in a moon or planet
 // theta becomes radius
-const TUint16 OTYPE_MOON = 5;
+const TUint32 OTYPE_MOON = 5;
 
 // FLAGS
 // if set, the lines will explode
-const TUint16 OFLAG_EXPLODE = (1 << 4);
+const TUint32 SFLAG_EXPLODE = (1 << 14);
 // set when the object has collided (ENEMY vs PLAYER BULLET, etc.)
-const TUint16 OFLAG_COLLISION = (1 << 5);
+const TUint32 SFLAG_COLLISION = (1 << 15);
 // Process can use the remaining bits, starting with (1<<USER_BIT)
-const TUint16 OFLAG_USER_BIT = (6);
+const TUint32 OFLAG_USER_BIT = (1 << 30);
 
 #define MAX_BBITMAP 5
 

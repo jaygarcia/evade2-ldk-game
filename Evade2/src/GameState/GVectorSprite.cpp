@@ -83,7 +83,7 @@ TBool GVectorSprite::Render(BViewPort *aViewPort) {
 
   // uint8_t color = isEnemy ? 5 : 255;
 
-  if (flags & OFLAG_EXPLODE) {
+  if (flags & SFLAG_EXPLODE) {
     ExplodeVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, mState, this->mColor);
   }
   else {
@@ -92,10 +92,10 @@ TBool GVectorSprite::Render(BViewPort *aViewPort) {
 
       // draw radar blip
       TFloat dx = Camera::mX - mX,
-          dy = Camera::mY - mY,
-          angle = atan2(dy, dx);
+        dy = Camera::mY - mY,
+        angle = atan2(dy, dx);
 
-          printf("TODO: Fill Circle for enemy radar\n");
+        printf("TODO: Fill Circle for enemy radar\n");
 //        Gfx::FillCircle(
 //            (int16_t)(SCREEN_WIDTH / 2 + cos(angle) * 75),
 //            (int16_t)(SCREEN_HEIGHT / 2 + sin(angle) * 75),
@@ -112,4 +112,13 @@ TBool GVectorSprite::Render(BViewPort *aViewPort) {
 
 TBool GVectorSprite::BehindCamera()  {
   return mZ <= Camera::mZ;
+}
+
+
+void GVectorSprite::Collide(BSprite *aOther) {
+  auto *s = (GVectorSprite *)aOther;
+
+
+//  cType |= s->type;
+//  s->cType |= type;
 }

@@ -13,10 +13,10 @@ public:
   EXPLICIT GPlayerBulletSprite(TInt16 aDeltaX, TInt16 aDeltaY, TBool alt = EFalse) : GVectorSprite() {
     mZ = Camera::mZ - 75;
     mColor = COLOR_HUD_FG;
-    mTimer = 0;
-
     SetCMask(STYPE_ENEMY | STYPE_OBJECT | STYPE_EBULLET);
     SetFlags(SFLAG_CHECK);
+
+    mTimer = 0;
     if (alt) {
       mX = Camera::mX + 28;
       mY = Camera::mY - 28;
@@ -29,15 +29,14 @@ public:
 
     mVX = aDeltaX;
     mVY = aDeltaY;
+    alt = !alt;
     mVZ = Camera::mVZ + BULLET_VZ;
     mLines = player_bullet_img;
-
   }
 
   TBool Render(BViewPort *aViewPort) OVERRIDE {
     mTimer++;
 
-    mTheta += mState;
 
     TFloat zz = (mZ - Camera::mZ);
 
@@ -51,13 +50,19 @@ public:
     TFloat cy = (Camera::mY - mY) * ratio + SCREEN_HEIGHT / 2;
     TBool drawn = EFalse;
 
-    if (flags & OFLAG_EXPLODE) {
+    if (flags & SFLAG_EXPLODE) {
       drawn = ExplodeVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, mState, this->mColor);
     }
     else {
+      mTheta += mState;
       drawn = DrawVectorGraphic(mLines, cx, cy, mTheta, 1 / ratio, this->mColor);
     }
 
+    if (! drawn) {
+      GPlayer::SubtractBullet();
+    }
+
+//    printf("GPlayerBullet Render = %i\n", drawn);
     return drawn;
   }
 };
@@ -96,7 +101,6 @@ TBool GPlayerBulletProcess::RunBefore() {
 //    mSprite->Remove();
     return EFalse;
   }
-printf("GPlayerBulletProcess RunBefore\n");
   return ETrue;
 }
 

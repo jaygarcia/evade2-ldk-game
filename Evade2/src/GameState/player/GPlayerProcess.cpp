@@ -5,6 +5,7 @@
 #include "GStatProcess.h"
 #include "GResources.h"
 #include "GPlayerBulletProcess.h"
+#include "GEnemyProcess.h"
 #include "GBossProcess.h"
 #include "Camera.h"
 #define DEBUGME
@@ -15,6 +16,7 @@ const TUint16 IDLE_STATE = 0;
 const TUint16 FALL_STATE = 4;
 const TInt16 BLINK_TIME = FRAMES_PER_SECOND;
 
+GEnemySprite *enemySprite;
 
 GPlayerProcess::GPlayerProcess(GGameState *aGameState) : GProcess(ATTR_PLAYER_IN1), mGameState(aGameState) {
   mState = IDLE_STATE;
@@ -24,6 +26,9 @@ GPlayerProcess::GPlayerProcess(GGameState *aGameState) : GProcess(ATTR_PLAYER_IN
   GPlayer::mInvulnerable = EFalse;
   GPlayer::mSprite = mSprite = ENull;
 
+
+  enemySprite = new GEnemySprite();
+  enemySprite->InitEnemyType(ENEMY_ASSAULT);
   mAltBullet = EFalse;
   // initialize player sprite
   GPlayer::mSprite = mSprite = new GPlayerSprite();
@@ -117,10 +122,25 @@ TBool GPlayerProcess::RunAfter() {
 //      GPlayer::mTargeted = ENull;
 //    }
   if (gControls.WasPressed(CONTROL_SHOOT) && GPlayer::mNumBullets < GPlayer::mMaxBullets) {
-    printf("CONTROL_SHOOT\n");
-//    new GPlayerSprite();
-
     mGameState->AddProcess(new GPlayerBulletProcess(mGameState, mAltBullet = !mAltBullet));
+  }
+
+  if (gControls.IsPressed(CONTROL_JOYDOWN)) {
+     Camera::mVY = DELTA_CONTROL;
+  }
+  else if (gControls.IsPressed(CONTROL_JOYUP)) {
+    Camera::mVY = -DELTA_CONTROL;
+  } else {
+    Camera::mVY = 0;
+  }
+
+  if (gControls.IsPressed(CONTROL_JOYRIGHT)) {
+     Camera::mVX = -DELTA_CONTROL;
+  }
+  else if (gControls.IsPressed(CONTROL_JOYLEFT)) {
+    Camera::mVX = DELTA_CONTROL;
+  } else {
+    Camera::mVX = 0;
   }
 
   if (gControls.IsPressed(CONTROL_BOOST)) {
@@ -136,7 +156,8 @@ TBool GPlayerProcess::RunAfter() {
           gSoundPlayer.TriggerSfx(SFX_SPEED_BOOST_WAV, 4);
         }
       }
-    } else {
+    }
+    else {
       Camera::mVZ = CAMERA_VZ;
     }
   }
@@ -149,6 +170,8 @@ TBool GPlayerProcess::RunAfter() {
     }
   }
 
+  enemySprite->Move();
+  enemySprite->Render(gViewPort);
 
   return ETrue;
 }

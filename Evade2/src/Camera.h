@@ -15,6 +15,7 @@ public:
     Camera::mX += Camera::mVX;
     Camera::mY += Camera::mVY;
     Camera::mZ += Camera::mVZ;
+//    printf("Camera [x]%i [y]%i [z]%i\n", (TInt16)mX,  (TInt16)mY,  (TInt16)mZ);
   }
 
   static TBool CollidesWith(GVectorSprite *aVSprite) {

@@ -40,8 +40,7 @@ public:
 
 public:
   TFloat mMeter;
-  TInt mType;
-  TFloat mVTheta;
+  TInt mType{};
 };
 
 #endif
