@@ -35,7 +35,13 @@ struct GPlayer {
 
   }
 
+  static void SubtractBullet() {
+    mNumBullets--;
+    if (mNumBullets < 0) {
+      mNumBullets = 0;
+    }
 
+  }
 
   static void WriteToStream(BMemoryStream &stream);
   static void ReadFromStream(BMemoryStream &stream);

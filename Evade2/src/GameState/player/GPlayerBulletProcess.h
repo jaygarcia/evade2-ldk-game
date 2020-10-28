@@ -9,7 +9,7 @@ class GPlayerBulletSprite;
 
 class GPlayerBulletProcess : public GProcess {
 public:
-  GPlayerBulletProcess(GGameState *aGameState);
+  GPlayerBulletProcess(GGameState *aGameState,  TBool aAltBullet);
   ~GPlayerBulletProcess() OVERRIDE;
 
 public:

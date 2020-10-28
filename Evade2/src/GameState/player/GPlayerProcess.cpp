@@ -24,6 +24,7 @@ GPlayerProcess::GPlayerProcess(GGameState *aGameState) : GProcess(ATTR_PLAYER_IN
   GPlayer::mInvulnerable = EFalse;
   GPlayer::mSprite = mSprite = ENull;
 
+  mAltBullet = EFalse;
   // initialize player sprite
   GPlayer::mSprite = mSprite = new GPlayerSprite();
   mGameState->AddSprite(mSprite);
@@ -118,7 +119,8 @@ TBool GPlayerProcess::RunAfter() {
   if (gControls.WasPressed(CONTROL_SHOOT) && GPlayer::mNumBullets < GPlayer::mMaxBullets) {
     printf("CONTROL_SHOOT\n");
 //    new GPlayerSprite();
-    mGameState->AddProcess(new GPlayerBulletProcess(mGameState));
+
+    mGameState->AddProcess(new GPlayerBulletProcess(mGameState, mAltBullet = !mAltBullet));
   }
 
   if (gControls.IsPressed(CONTROL_BOOST)) {
@@ -150,6 +152,8 @@ TBool GPlayerProcess::RunAfter() {
 
   return ETrue;
 }
+
+
 
 void GPlayerProcess::WriteCustomToStream(BMemoryStream &aStream) {
 }

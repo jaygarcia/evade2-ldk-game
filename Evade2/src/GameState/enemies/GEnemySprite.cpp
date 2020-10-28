@@ -79,7 +79,7 @@ static void init_bomber(GEnemySprite *o) {
 GEnemySprite::GEnemySprite() : GVectorSprite() {
 
   SetCMask(STYPE_PLAYER | STYPE_PBULLET | STYPE_OBJECT);
-  SetFlags(SFLAG_CHECK | SFLAG_RENDER_SHADOW);
+  SetFlags(SFLAG_CHECK);
 
   mMeter = 1.0;
 }

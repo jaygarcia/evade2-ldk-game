@@ -66,6 +66,7 @@ protected:
   TUint16 mStep;
   TUint16 mStepFrame;
   TUint16 mBlinkTimer;
+  TBool mAltBullet;
 };
 
 #endif // MODITE_GPLAYERPROCESS_H
